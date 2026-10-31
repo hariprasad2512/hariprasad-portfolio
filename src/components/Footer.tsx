@@ -1,7 +1,7 @@
 "use client";
 
-import { useSyncExternalStore } from "react";
-import { navItems, site } from "@/data/site";
+import { Fragment, useSyncExternalStore } from "react";
+import { contact, footer, initials, navItems, site } from "@/content";
 
 let clockTimer: number | undefined;
 
@@ -43,24 +43,20 @@ export default function Footer() {
               className="flex shrink-0 items-center gap-8 pr-8"
               aria-hidden={copy === 1}
             >
-              <span className="whitespace-nowrap font-display text-[clamp(1.9rem,4.6vw,3.8rem)] italic leading-none">
-                Open to work
-              </span>
-              <span className="text-accent" aria-hidden="true">
-                ✳
-              </span>
-              <span className="whitespace-nowrap font-display text-[clamp(1.9rem,4.6vw,3.8rem)] leading-none text-ink-soft">
-                Full-stack developer
-              </span>
-              <span className="text-accent" aria-hidden="true">
-                ✳
-              </span>
-              <span className="whitespace-nowrap font-display text-[clamp(1.9rem,4.6vw,3.8rem)] italic leading-none">
-                Hyderabad → anywhere
-              </span>
-              <span className="text-accent" aria-hidden="true">
-                ✳
-              </span>
+              {footer.marquee.map((item) => (
+                <Fragment key={item.text}>
+                  <span
+                    className={`whitespace-nowrap font-display text-[clamp(1.9rem,4.6vw,3.8rem)] leading-none ${
+                      item.emphasis ? "italic" : "text-ink-soft"
+                    }`}
+                  >
+                    {item.text}
+                  </span>
+                  <span className="text-accent" aria-hidden="true">
+                    ✳
+                  </span>
+                </Fragment>
+              ))}
             </div>
           ))}
         </div>
@@ -71,12 +67,12 @@ export default function Footer() {
           <div>
             <p className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.16em]">
               <span className="grid h-6 w-6 place-items-center rounded-full border border-rule-strong text-[8px]">
-                HA
+                {initials}
               </span>
               {site.name}
             </p>
             <p className="mt-3 max-w-[15rem] text-[12px] leading-5 text-ink-faint">
-              Building web, mobile, and AI products from Hyderabad, India.
+              {footer.tagline}
             </p>
           </div>
 
@@ -97,32 +93,27 @@ export default function Footer() {
               href={`mailto:${site.email}`}
               className="w-fit font-mono text-[10px] uppercase tracking-[0.14em] text-ink-soft transition-colors hover:text-accent"
             >
-              Email
+              {contact.labels.email}
             </a>
-            <a
-              href={site.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-fit font-mono text-[10px] uppercase tracking-[0.14em] text-ink-soft transition-colors hover:text-accent"
-            >
-              GitHub ↗
-            </a>
-            <a
-              href={site.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-fit font-mono text-[10px] uppercase tracking-[0.14em] text-ink-soft transition-colors hover:text-accent"
-            >
-              LinkedIn ↗
-            </a>
+            {site.socials.map((item) => (
+              <a
+                key={item.id}
+                href={item.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-fit font-mono text-[10px] uppercase tracking-[0.14em] text-ink-soft transition-colors hover:text-accent"
+              >
+                {item.label} ↗
+              </a>
+            ))}
           </div>
 
           <div className="flex flex-col gap-2 sm:items-start lg:items-end">
             <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-ink-soft">
-              Hyderabad · {time} IST
+              {site.location.split(",")[0]} · {time} IST
             </p>
             <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-ink-faint">
-              © 2026 {site.name}
+              {footer.copyright}
             </p>
             <a
               href="#top"
@@ -135,8 +126,8 @@ export default function Footer() {
         </div>
 
         <div className="mt-10 flex flex-wrap items-center justify-between gap-3 border-t border-rule pt-5 font-mono text-[9px] uppercase tracking-[0.14em] text-ink-faint">
-          <p>Built with Next.js, Motion, and an unreasonable amount of grain.</p>
-          <p>Type: Instrument Serif / Geist</p>
+          <p>{footer.note}</p>
+          <p>{footer.typeNote}</p>
         </div>
       </div>
     </footer>

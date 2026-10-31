@@ -2,7 +2,7 @@
 
 import { motion } from "motion/react";
 
-export default function SpentlyVisual() {
+export default function SpentlyVisual({ label, note }: { label: string; note: string }) {
   const bars = [28, 46, 38, 62, 54, 78, 66, 92, 74, 58, 84, 70];
   const line =
     "M18 206 C46 198 58 186 80 182 C104 178 116 160 138 154 C160 148 172 132 194 126 C216 120 228 100 250 92 C272 84 286 70 306 58";
@@ -84,10 +84,10 @@ export default function SpentlyVisual() {
       </svg>
 
       <span className="absolute left-0 top-0 font-mono text-[9px] uppercase tracking-[0.18em] text-ink-faint">
-        Spend / monthly
+        {label}
       </span>
       <span className="absolute bottom-0 right-0 font-mono text-[9px] uppercase tracking-[0.18em] text-ink-faint">
-        Categories · 12
+        {note}
       </span>
     </div>
   );

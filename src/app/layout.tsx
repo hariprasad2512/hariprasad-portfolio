@@ -10,6 +10,10 @@ import SiteHeader from "@/components/chrome/SiteHeader";
 import CommandPalette from "@/components/chrome/CommandPalette";
 import Dock from "@/components/chrome/Dock";
 import Toaster from "@/components/chrome/Toaster";
+import { site } from "@/content";
+import { assertContent } from "@/content/validate";
+
+assertContent();
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,20 +33,17 @@ const instrumentSerif = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "Hariprasad Anuganti — Full-stack developer",
-  description:
-    "Hariprasad Anuganti builds web, mobile, and AI-powered products from Hyderabad, India. Explore Lisa, Spently, and Maargam.",
+  title: site.seo.title,
+  description: site.seo.description,
   openGraph: {
-    title: "Hariprasad Anuganti — Full-stack developer",
-    description:
-      "Web, mobile, and AI-powered products built with care. Selected work and case studies.",
+    title: site.seo.ogTitle,
+    description: site.seo.ogDescription,
     type: "website",
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Hariprasad Anuganti — Full-stack developer",
-    description:
-      "Web, mobile, and AI-powered products built with care. Selected work and case studies.",
+    card: site.seo.twitterCard,
+    title: site.seo.ogTitle,
+    description: site.seo.ogDescription,
   },
 };
 
@@ -82,22 +83,22 @@ export default function RootLayout({
       <body className="flex min-h-full flex-col">
         <ThemeProvider>
           <MotionProvider>
-          <a
-            href="#main"
-            className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[130] focus:rounded-full focus:bg-ink focus:px-4 focus:py-2 focus:text-xs focus:text-paper"
-          >
-            Skip to content
-          </a>
-          <ScrollProgress />
-          <Grain />
-          <Cursor />
-          <SiteHeader />
-          <main id="main" className="relative flex-1">
-            {children}
-          </main>
-          <Dock />
-          <CommandPalette />
-          <Toaster />
+            <a
+              href="#main"
+              className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[130] focus:rounded-full focus:bg-ink focus:px-4 focus:py-2 focus:text-xs focus:text-paper"
+            >
+              Skip to content
+            </a>
+            <ScrollProgress />
+            <Grain />
+            <Cursor />
+            <SiteHeader />
+            <main id="main" className="relative flex-1">
+              {children}
+            </main>
+            <Dock />
+            <CommandPalette />
+            <Toaster />
           </MotionProvider>
         </ThemeProvider>
       </body>

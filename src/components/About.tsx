@@ -3,21 +3,12 @@
 import { useRef, useState } from "react";
 import { useReducedMotion } from "motion/react";
 import Reveal from "@/components/chrome/Reveal";
-import { skills } from "@/data/site";
-
-const facts = [
-  { label: "Based in", value: "Hyderabad, India" },
-  { label: "Education", value: "B.Tech CS, IIIT Sri City — 2025" },
-  { label: "Focus", value: "Full-stack · Mobile · AI" },
-  { label: "Currently", value: "Open to new work" },
-];
+import { about, sectionNumber } from "@/content";
 
 export default function About() {
   const cloudRef = useRef<HTMLDivElement>(null);
   const chipRefs = useRef<Array<HTMLButtonElement | null>>([]);
-  const [active, setActive] = useState(
-    "Hover a tool to see where it shipped.",
-  );
+  const [active, setActive] = useState(about.cloud.idleMessage);
   const reduced = useReducedMotion();
 
   function handleMove(event: React.PointerEvent<HTMLDivElement>) {
@@ -58,38 +49,36 @@ export default function About() {
         <div className="flex flex-wrap items-end justify-between gap-8 border-t border-rule pt-6">
           <div>
             <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-faint">
-              (04) — About
+              ({sectionNumber("about")}) — {about.section.eyebrow}
             </p>
             <h2 className="mt-3 font-display text-[clamp(2.7rem,5.6vw,4.6rem)] leading-[0.94] tracking-[-0.01em]">
-              A developer with a
+              {about.section.title}
               <span className="mt-1 block italic text-accent">
-                product habit.
+                {about.section.titleAccent}
               </span>
             </h2>
           </div>
           <p className="max-w-[20rem] text-[13px] leading-6 text-ink-soft">
-            I care about the whole path: the data model, the API, the
-            interface, and the last ten percent of polish.
+            {about.section.note}
           </p>
         </div>
 
         <div className="mt-12 grid gap-12 md:grid-cols-[0.85fr_1.15fr] md:gap-16">
           <Reveal>
             <div className="max-w-md">
-              <p className="text-[15px] leading-7 text-ink-soft sm:text-base sm:leading-8">
-                I graduated in Computer Science from IIIT Sri City in 2025.
-                Since then I&apos;ve shipped a delivery app, a B2B project
-                platform, an AI voice assistant, and a few things in between.
-              </p>
-              <p className="mt-4 text-[15px] leading-7 text-ink-soft sm:text-base sm:leading-8">
-                My favourite part of the job is the translation step — turning
-                a fuzzy request into a working screen, a clean endpoint, or a
-                model call that behaves. I&apos;d rather ship something small
-                that holds up than something big that only demos well.
-              </p>
+              {about.intro.map((paragraph, index) => (
+                <p
+                  key={paragraph}
+                  className={`text-[15px] leading-7 text-ink-soft sm:text-base sm:leading-8 ${
+                    index === 0 ? "" : "mt-4"
+                  }`}
+                >
+                  {paragraph}
+                </p>
+              ))}
 
               <dl className="mt-9 divide-y divide-rule border-y border-rule">
-                {facts.map((fact) => (
+                {about.facts.map((fact) => (
                   <div
                     key={fact.label}
                     className="flex items-baseline justify-between gap-6 py-3"
@@ -122,7 +111,7 @@ export default function About() {
                 className="pointer-events-none absolute inset-0 flex items-center justify-center"
               >
                 <span className="select-none font-display text-[clamp(4rem,10vw,7rem)] italic leading-none text-ink/[0.055]">
-                  tools
+                  {about.cloud.backgroundWord}
                 </span>
               </div>
               <svg
@@ -148,7 +137,7 @@ export default function About() {
                 />
               </svg>
 
-              {skills.map((skill, index) => (
+              {about.skills.map((skill, index) => (
                 <button
                   key={skill.name}
                   ref={(element) => {

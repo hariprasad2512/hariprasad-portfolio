@@ -7,7 +7,7 @@ import {
   useMotionValueEvent,
   useScroll,
 } from "motion/react";
-import { projects } from "@/data/projects";
+import { projects, projectsSection, sectionNumber } from "@/content";
 import ProjectPanel from "@/components/projects/ProjectPanel";
 import CaseStudyOverlay from "@/components/projects/CaseStudyOverlay";
 
@@ -113,18 +113,17 @@ export default function ProjectsRail() {
         <div className="flex flex-wrap items-end justify-between gap-8 border-t border-rule pt-6">
           <div>
             <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-faint">
-              (02) — Selected work
+              ({sectionNumber("work")}) — {projectsSection.eyebrow}
             </p>
             <h2 className="mt-3 font-display text-[clamp(2.7rem,5.6vw,4.6rem)] leading-[0.94] tracking-[-0.01em]">
-              Things I&apos;ve built.
+              {projectsSection.title}
               <span className="mt-1 block italic text-accent">
-                Worth opening.
+                {projectsSection.titleAccent}
               </span>
             </h2>
           </div>
           <p className="max-w-[19rem] text-[13px] leading-6 text-ink-soft">
-            Three projects, one standard: software people can use without
-            reading a manual. Click any panel for the full story.
+            {projectsSection.note}
           </p>
         </div>
       </div>
@@ -143,6 +142,7 @@ export default function ProjectsRail() {
               <ProjectPanel
                 key={project.slug}
                 project={project}
+                total={projects.length}
                 onOpen={open}
               />
             ))}
@@ -153,7 +153,7 @@ export default function ProjectsRail() {
 
           <div className="pointer-events-none mx-auto mt-8 hidden w-full max-w-[1440px] items-center gap-5 px-8 md:flex">
             <span className="whitespace-nowrap font-mono text-[9px] uppercase tracking-[0.18em] text-ink-faint">
-              Scroll to move · click to open
+              {projectsSection.railHint}
             </span>
             <span className="h-px flex-1 bg-rule">
               <motion.span
@@ -175,6 +175,7 @@ export default function ProjectsRail() {
           <CaseStudyOverlay
             key="case-study"
             project={projects[activeIndex]}
+            total={projects.length}
             origin={active.origin}
             onClose={close}
             onNavigate={navigate}

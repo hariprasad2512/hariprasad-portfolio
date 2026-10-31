@@ -1,0 +1,21 @@
+{
+  "hero": {
+    "headline": {
+      "lead": "Ideas into",
+      "accent": "working software."
+    },
+    "intro": "I'm Hariprasad — a full-stack developer building web, mobile, and AI-powered products. I like the part where an idea becomes something people can actually open, tap, and use.",
+    "primaryCta": {
+      "label": "See the work",
+      "href": "#work",
+      "cursorLabel": "Explore"
+    },
+    "secondaryCta": {
+      "label": "Say hello",
+      "href": "#contact",
+      "cursorLabel": "Contact"
+    },
+    "scrollLabel": "Scroll to explore",
+    "edition": "Portfolio — 2026"
+  }
+}

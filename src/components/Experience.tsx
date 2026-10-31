@@ -2,7 +2,12 @@
 
 import { useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { experience } from "@/data/experience";
+import {
+  experience,
+  experiencePanel,
+  experienceSection,
+  sectionNumber,
+} from "@/content";
 
 const clamp = (value: number, min: number, max: number) =>
   Math.min(max, Math.max(min, value));
@@ -60,16 +65,17 @@ export default function Experience() {
         <div className="flex flex-wrap items-end justify-between gap-8 border-t border-rule pt-6">
           <div>
             <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-faint">
-              (03) — The path
+              ({sectionNumber("path")}) — {experienceSection.eyebrow}
             </p>
             <h2 className="mt-3 font-display text-[clamp(2.7rem,5.6vw,4.6rem)] leading-[0.94] tracking-[-0.01em]">
-              Places I&apos;ve
-              <span className="mt-1 block italic text-accent">learned from.</span>
+              {experienceSection.title}
+              <span className="mt-1 block italic text-accent">
+                {experienceSection.titleAccent}
+              </span>
             </h2>
           </div>
           <p className="max-w-[18rem] text-[13px] leading-6 text-ink-soft">
-            Two teams, a lot of context switching. Drag the dial to move
-            through it.
+            {experienceSection.note}
           </p>
         </div>
 
@@ -78,8 +84,8 @@ export default function Experience() {
           data-cursor-label="Drag"
         >
           <div className="flex items-center justify-between border-b border-rule px-5 py-3 font-mono text-[9px] uppercase tracking-[0.18em] text-ink-faint sm:px-7 sm:text-[10px]">
-            <span>Career signal</span>
-            <span className="hidden sm:block">Drag · ← → to tune</span>
+            <span>{experiencePanel.title}</span>
+            <span className="hidden sm:block">{experiencePanel.hint}</span>
           </div>
 
           <div className="px-5 pb-2 pt-8 sm:px-7 sm:pt-10">

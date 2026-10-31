@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
-import { navItems } from "@/data/site";
+import { navItems } from "@/content";
 
 export default function Dock() {
   const [active, setActive] = useState("top");
@@ -30,7 +30,10 @@ export default function Dock() {
       const atBottom =
         window.scrollY + window.innerHeight >=
         document.documentElement.scrollHeight - 80;
-      if (atBottom) setActive("contact");
+      if (atBottom) {
+        const last = navItems.at(-1);
+        if (last) setActive(last.id);
+      }
     };
     window.addEventListener("scroll", onScroll, { passive: true });
 

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import ThemeToggle from "@/components/chrome/ThemeToggle";
-import { site } from "@/data/site";
+import { initials, site } from "@/content";
 
 export function openPalette() {
   window.dispatchEvent(new CustomEvent("signal:palette"));
@@ -30,10 +30,10 @@ export default function SiteHeader() {
         <a
           href="#top"
           className="group flex items-center gap-3"
-          aria-label="Hariprasad Anuganti — back to top"
+          aria-label={`${site.name} — back to top`}
         >
           <span className="relative grid h-8 w-8 place-items-center rounded-full border border-rule-strong font-mono text-[10px] tracking-tight transition-colors group-hover:border-accent group-hover:text-accent">
-            HA
+            {initials}
             <span className="absolute -right-0.5 -top-0.5 h-1.5 w-1.5 rounded-full bg-accent" />
           </span>
           <span className="hidden text-[11px] font-medium uppercase tracking-[0.18em] sm:block">

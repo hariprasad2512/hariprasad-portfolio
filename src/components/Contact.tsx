@@ -2,7 +2,7 @@
 
 import Magnetic from "@/components/chrome/Magnetic";
 import { toast } from "@/components/chrome/Toaster";
-import { site } from "@/data/site";
+import { contact, sectionNumber, site } from "@/content";
 
 export default function Contact() {
   function copyEmail() {
@@ -22,24 +22,24 @@ export default function Contact() {
       <div className="relative mx-auto max-w-[1440px] px-5 sm:px-8">
         <div className="border-t border-rule pt-6">
           <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-faint">
-            (05) — Contact
+            ({sectionNumber("contact")}) — {contact.section.eyebrow}
           </p>
         </div>
 
         <div className="mt-8 grid gap-12 lg:grid-cols-[1.35fr_0.65fr] lg:items-end lg:gap-16">
           <div>
             <h2 className="font-display text-[clamp(3rem,8.4vw,7.2rem)] leading-[0.88] tracking-[-0.02em]">
-              Let&apos;s make
-              <span className="block">something</span>
-              <span className="block italic text-accent">people use.</span>
+              {contact.section.titleLines[0]}
+              <span className="block">{contact.section.titleLines[1]}</span>
+              <span className="block italic text-accent">
+                {contact.section.titleAccent}
+              </span>
             </h2>
           </div>
 
           <div className="max-w-sm lg:pb-3">
             <p className="text-[14px] leading-7 text-ink-soft">
-              I&apos;m looking for full-stack, product engineering, or
-              AI-adjacent roles — and I&apos;m always up for a good side
-              project. The fastest way in is email.
+              {contact.intro}
             </p>
 
             <div className="mt-8 flex items-center gap-6">
@@ -47,12 +47,12 @@ export default function Contact() {
                 <a
                   href={`mailto:${site.email}`}
                   className="group grid h-32 w-32 place-items-center rounded-full bg-accent text-on-accent transition-transform duration-300 hover:scale-[1.04] sm:h-36 sm:w-36"
-                  data-cursor-label="Say hi"
+                  data-cursor-label={contact.cta.cursorLabel}
                 >
                   <span className="text-center font-display text-2xl italic leading-none sm:text-3xl">
-                    Say hi
+                    {contact.cta.label}
                     <span className="mt-1 block font-sans text-[9px] uppercase tracking-[0.18em] not-italic opacity-70">
-                      opens mail
+                      {contact.cta.note}
                     </span>
                   </span>
                 </a>
@@ -64,24 +64,19 @@ export default function Contact() {
                   onClick={copyEmail}
                   className="block text-left text-ink-soft underline decoration-rule-strong underline-offset-4 transition-colors hover:text-ink"
                 >
-                  Copy email
+                  {contact.labels.copyEmail}
                 </button>
-                <a
-                  href={site.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block text-ink-soft underline decoration-rule-strong underline-offset-4 transition-colors hover:text-ink"
-                >
-                  GitHub ↗
-                </a>
-                <a
-                  href={site.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block text-ink-soft underline decoration-rule-strong underline-offset-4 transition-colors hover:text-ink"
-                >
-                  LinkedIn ↗
-                </a>
+                {site.socials.map((item) => (
+                  <a
+                    key={item.id}
+                    href={item.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block text-ink-soft underline decoration-rule-strong underline-offset-4 transition-colors hover:text-ink"
+                  >
+                    {item.label} ↗
+                  </a>
+                ))}
               </div>
             </div>
 

@@ -3,7 +3,7 @@
 const route =
   "M26 236 C86 214 74 168 132 156 C190 144 168 96 224 86 C262 79 286 62 306 44";
 
-export default function MaargamVisual() {
+export default function MaargamVisual({ label, note }: { label: string; note: string }) {
   const stops = [
     { x: 26, y: 236 },
     { x: 132, y: 156 },
@@ -76,10 +76,10 @@ export default function MaargamVisual() {
       </svg>
 
       <span className="absolute left-0 top-0 font-mono text-[9px] uppercase tracking-[0.18em] text-ink-faint">
-        Offline-first
+        {label}
       </span>
       <span className="absolute bottom-0 right-0 font-mono text-[9px] uppercase tracking-[0.18em] text-ink-faint">
-        TSRTC · Telangana
+        {note}
       </span>
     </div>
   );

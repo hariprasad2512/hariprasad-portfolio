@@ -2,7 +2,8 @@
 
 import { useEffect, useRef } from "react";
 import { motion, useReducedMotion } from "motion/react";
-import type { Project } from "@/data/projects";
+import type { Project } from "@/content/schema";
+import { projectsSection } from "@/content";
 import LisaVisual from "@/components/projects/visuals/LisaVisual";
 import SpentlyVisual from "@/components/projects/visuals/SpentlyVisual";
 import MaargamVisual from "@/components/projects/visuals/MaargamVisual";
@@ -17,6 +18,7 @@ const visuals = {
 
 type CaseStudyOverlayProps = {
   project: Project;
+  total: number;
   origin: { x: number; y: number } | null;
   onClose: () => void;
   onNavigate: (direction: 1 | -1) => void;
@@ -26,6 +28,7 @@ type CaseStudyOverlayProps = {
 
 export default function CaseStudyOverlay({
   project,
+  total,
   origin,
   onClose,
   onNavigate,
@@ -120,16 +123,17 @@ export default function CaseStudyOverlay({
       >
         <div className="sticky top-0 z-20 -mx-5 flex items-center justify-between border-b border-rule bg-paper/90 px-5 py-4 backdrop-blur-xl sm:-mx-8 sm:px-8">
           <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-ink-faint sm:text-[10px]">
-            Case study — {project.number} / 03
+            {projectsSection.caseStudyLabel} — {project.number} /{" "}
+            {String(total).padStart(2, "0")}
           </p>
           <button
             ref={closeRef}
             type="button"
             onClick={onClose}
             className="flex items-center gap-2 rounded-full border border-rule px-3 py-1.5 font-mono text-[9px] uppercase tracking-[0.16em] text-ink-soft transition-colors hover:border-ink hover:text-ink sm:text-[10px]"
-            data-cursor-label="Close"
+            data-cursor-label={projectsSection.labels.close}
           >
-            Close
+            {projectsSection.labels.close}
             <span aria-hidden="true">✕</span>
             <kbd className="hidden rounded border border-rule px-1 py-0.5 text-[8px] sm:inline">
               esc
@@ -160,7 +164,7 @@ export default function CaseStudyOverlay({
             </div>
 
             <div className="relative h-[200px] rounded-xl border border-rule bg-surface p-4 sm:h-[260px]">
-              <Visual />
+              <Visual label={project.visualLabel} note={project.visualNote} />
             </div>
           </div>
 
@@ -184,9 +188,21 @@ export default function CaseStudyOverlay({
 
           <div className="mt-10 max-w-3xl space-y-10 sm:mt-14 sm:space-y-12">
             {[
-              ["01", "The problem", project.caseStudy.problem],
-              ["02", "The approach", project.caseStudy.approach],
-              ["03", "The outcome", project.caseStudy.outcome],
+              [
+                "01",
+                projectsSection.caseStudySections.problem,
+                project.caseStudy.problem,
+              ],
+              [
+                "02",
+                projectsSection.caseStudySections.approach,
+                project.caseStudy.approach,
+              ],
+              [
+                "03",
+                projectsSection.caseStudySections.outcome,
+                project.caseStudy.outcome,
+              ],
             ].map(([number, title, body], index) => (
               <motion.section
                 key={title}
@@ -232,9 +248,9 @@ export default function CaseStudyOverlay({
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full border border-rule-strong px-5 py-3 text-[12px] font-medium transition-colors hover:bg-paper-2"
-                data-cursor-label="Code"
+                data-cursor-label={projectsSection.labels.code}
               >
-                Source ↗
+                {projectsSection.labels.source} ↗
               </a>
             )}
           </div>
@@ -249,7 +265,7 @@ export default function CaseStudyOverlay({
               <span className="font-mono text-[10px] text-ink-faint">←</span>
               <span>
                 <span className="block font-mono text-[9px] uppercase tracking-[0.18em] text-ink-faint">
-                  Previous
+                  {projectsSection.labels.previous}
                 </span>
                 <span className="mt-1 block font-display text-xl transition-colors group-hover:text-accent">
                   {previous.name}
@@ -264,7 +280,7 @@ export default function CaseStudyOverlay({
             >
               <span>
                 <span className="block font-mono text-[9px] uppercase tracking-[0.18em] text-ink-faint">
-                  Next
+                  {projectsSection.labels.next}
                 </span>
                 <span className="mt-1 block font-display text-xl transition-colors group-hover:text-accent">
                   {next.name}

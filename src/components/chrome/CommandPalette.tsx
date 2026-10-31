@@ -4,8 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { useTheme } from "@/components/chrome/ThemeProvider";
 import { toast } from "@/components/chrome/Toaster";
-import { navItems, site } from "@/data/site";
-import { projects } from "@/data/projects";
+import { navItems, projects, site } from "@/content";
 import { lockScroll } from "@/lib/scrollLock";
 import { isTopOverlay, pushOverlay } from "@/lib/overlayStack";
 
@@ -97,28 +96,17 @@ export default function CommandPalette() {
           window.location.href = `mailto:${site.email}`;
         },
       },
-      {
-        id: "action-github",
-        label: "Open GitHub",
+      ...site.socials.map<PaletteItem>((item) => ({
+        id: `action-${item.id}`,
+        label: `Open ${item.label}`,
         group: "Actions",
-        hint: "github.com/hariprasad2512",
-        keywords: "code repos source",
+        hint: item.handle ?? item.url,
+        keywords: `${item.label} ${item.handle ?? ""} social link`,
         run: () => {
           close();
-          window.open(site.github, "_blank", "noopener,noreferrer");
+          window.open(item.url, "_blank", "noopener,noreferrer");
         },
-      },
-      {
-        id: "action-linkedin",
-        label: "Open LinkedIn",
-        group: "Actions",
-        hint: "in/hariprasad-anuganti",
-        keywords: "work connect",
-        run: () => {
-          close();
-          window.open(site.linkedin, "_blank", "noopener,noreferrer");
-        },
-      },
+      })),
     ];
 
     return [...sections, ...projectItems, ...actions];

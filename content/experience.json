@@ -1,0 +1,44 @@
+{
+  "section": {
+    "eyebrow": "The path",
+    "title": "Places I've",
+    "titleAccent": "learned from.",
+    "note": "Two teams, a lot of context switching. Drag the dial to move through it."
+  },
+  "panel": {
+    "title": "Career signal",
+    "hint": "Drag · ← → to tune"
+  },
+  "items": [
+    {
+      "id": "keystone",
+      "company": "Keystone Robotix",
+      "role": "Associate Software Engineer",
+      "period": "Sep 2025 – Jan 2026",
+      "short": "2025 → 26",
+      "location": "Hyderabad, India",
+      "summary": "Shipping mobile and web products for logistics and B2B operations — from Flutter app to production release.",
+      "stack": ["Flutter", "Python", "MERN", "Framework7", "Azure DevOps"],
+      "highlights": [
+        "Engineered the Unibasket mobile app using Flutter and a Python backend for daily deliveries from verified local vendors.",
+        "Contributed to launching Unimatix.io, a cross-platform B2B project management tool using Framework7, Flutter, and CI/CD tools.",
+        "Managed concurrent MERN stack client projects, streamlined bug tracking and operations using Azure DevOps, and presented product demos."
+      ]
+    },
+    {
+      "id": "imaginate",
+      "company": "Imaginate XR",
+      "role": "Development Intern",
+      "period": "Mar 2025 – Aug 2025",
+      "short": "2025",
+      "location": "Hyderabad, India",
+      "summary": "Built backend systems and conversational interfaces for healthcare and immersive therapy products.",
+      "stack": ["Python", "APIs", "AI", "Unity / VR"],
+      "highlights": [
+        "Developed and maintained backend-driven systems for Manaha Clinic to support appointment scheduling and patient workflows.",
+        "Deployed a conversational AI kiosk, managing AI context and API integrations for real-time healthcare information.",
+        "Improved the user experience of VR-based flight-phobia treatments through usability testing and iterative interface refinements."
+      ]
+    }
+  ]
+}

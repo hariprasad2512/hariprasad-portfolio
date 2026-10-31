@@ -1,4 +1,4 @@
-export default function LisaVisual() {
+export default function LisaVisual({ label, note }: { label: string; note: string }) {
   const bars = [
     0.32, 0.55, 0.78, 0.42, 0.9, 0.66, 1, 0.58, 0.36, 0.72, 0.48, 0.86,
     0.62, 0.4, 0.95, 0.55, 0.7, 0.34, 0.8, 0.52, 0.92, 0.44, 0.68, 0.3,
@@ -92,10 +92,10 @@ export default function LisaVisual() {
       </svg>
 
       <span className="absolute left-0 top-0 font-mono text-[9px] uppercase tracking-[0.18em] text-ink-faint">
-        Voice / live
+        {label}
       </span>
       <span className="absolute bottom-0 right-0 font-mono text-[9px] uppercase tracking-[0.18em] text-ink-faint">
-        24 kHz · duplex
+        {note}
       </span>
     </div>
   );

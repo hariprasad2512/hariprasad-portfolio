@@ -1,0 +1,26 @@
+{
+  "section": {
+    "eyebrow": "Contact",
+    "titleLines": ["Let's make", "something"],
+    "titleAccent": "people use."
+  },
+  "intro": "I'm looking for full-stack, product engineering, or AI-adjacent roles — and I'm always up for a good side project. The fastest way in is email.",
+  "cta": {
+    "label": "Say hi",
+    "note": "opens mail",
+    "cursorLabel": "Say hi"
+  },
+  "labels": {
+    "copyEmail": "Copy email",
+    "email": "Email"
+  },
+  "form": {
+    "enabled": true,
+    "provider": "mailto",
+    "endpoint": "",
+    "accessKey": "",
+    "subject": "Portfolio enquiry",
+    "successMessage": "Message sent — I'll get back to you soon.",
+    "errorMessage": "Something went wrong. Email works too."
+  }
+}

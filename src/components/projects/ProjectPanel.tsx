@@ -7,7 +7,8 @@ import {
   useReducedMotion,
   useSpring,
 } from "motion/react";
-import type { Project } from "@/data/projects";
+import type { Project } from "@/content/schema";
+import { projectsSection } from "@/content";
 import LisaVisual from "@/components/projects/visuals/LisaVisual";
 import SpentlyVisual from "@/components/projects/visuals/SpentlyVisual";
 import MaargamVisual from "@/components/projects/visuals/MaargamVisual";
@@ -20,10 +21,15 @@ const visuals = {
 
 type ProjectPanelProps = {
   project: Project;
+  total: number;
   onOpen: (slug: string, origin?: { x: number; y: number }) => void;
 };
 
-export default function ProjectPanel({ project, onOpen }: ProjectPanelProps) {
+export default function ProjectPanel({
+  project,
+  total,
+  onOpen,
+}: ProjectPanelProps) {
   const ref = useRef<HTMLElement>(null);
   const reduced = useReducedMotion();
   const rawRotateX = useMotionValue(0);
@@ -61,7 +67,7 @@ export default function ProjectPanel({ project, onOpen }: ProjectPanelProps) {
       }}
       style={{ rotateX, rotateY, transformPerspective: 1100 }}
       className="group relative flex w-full shrink-0 flex-col overflow-hidden rounded-xl border border-rule bg-surface/85 p-5 transition-colors duration-500 hover:border-rule-strong sm:p-7 md:w-[min(88vw,880px)] lg:h-[600px] lg:p-8"
-      data-cursor-label="Case study"
+      data-cursor-label={projectsSection.labels.caseStudyCursor}
     >
       <div
         aria-hidden="true"
@@ -111,10 +117,10 @@ export default function ProjectPanel({ project, onOpen }: ProjectPanelProps) {
                 })
               }
               className="group/cta inline-flex items-center gap-2 text-[12px] font-medium tracking-wide"
-              data-cursor-label="Open"
+              data-cursor-label={projectsSection.labels.open}
             >
               <span className="border-b border-ink pb-0.5 transition-colors group-hover/cta:border-accent group-hover/cta:text-accent">
-                Read the case study
+                {projectsSection.caseStudyCta}
               </span>
               <span
                 aria-hidden="true"
@@ -130,7 +136,7 @@ export default function ProjectPanel({ project, onOpen }: ProjectPanelProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[12px] text-ink-soft underline decoration-rule-strong underline-offset-4 transition-colors hover:text-ink"
-                data-cursor-label="Live"
+                data-cursor-label={projectsSection.labels.live}
               >
                 {project.linkLabel ?? "Live demo"} ↗
               </a>
@@ -141,23 +147,23 @@ export default function ProjectPanel({ project, onOpen }: ProjectPanelProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[12px] text-ink-soft underline decoration-rule-strong underline-offset-4 transition-colors hover:text-ink"
-                data-cursor-label="Code"
+                data-cursor-label={projectsSection.labels.code}
               >
-                GitHub ↗
+                {projectsSection.labels.github} ↗
               </a>
             )}
           </div>
         </div>
 
         <div className="relative h-[210px] w-full rounded-lg border border-rule bg-paper-2/40 p-4 sm:h-[260px] md:h-[300px] lg:h-[340px]">
-          <Visual />
+          <Visual label={project.visualLabel} note={project.visualNote} />
         </div>
       </div>
 
       <div className="relative flex items-center justify-between border-t border-rule pt-4 font-mono text-[9px] uppercase tracking-[0.16em] text-ink-faint sm:text-[10px]">
         <span>{project.role}</span>
         <span>
-          {project.number} / 03
+          {project.number} / {String(total).padStart(2, "0")}
         </span>
       </div>
     </motion.article>
