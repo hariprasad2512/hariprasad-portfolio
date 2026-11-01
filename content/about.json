@@ -32,5 +32,15 @@
     { "name": "Node.js", "usedIn": "Unimatix", "x": 62, "y": 74, "size": "sm" },
     { "name": "Firebase", "usedIn": "Unibasket", "x": 78, "y": 66, "size": "sm" },
     { "name": "Dart", "usedIn": "Maargam", "x": 86, "y": 38, "size": "sm" }
-  ]
+  ],
+  "interests": {
+    "label": "Off the clock",
+    "note": "What I gravitate toward when there's no ticket to close.",
+    "items": [
+      { "label": "Developer tools", "note": "Editors, CLIs, and tiny automations." },
+      { "label": "AI interfaces", "note": "Making models feel less like a console." },
+      { "label": "Offline-first software", "note": "Things that keep working without signal." },
+      { "label": "Typography", "note": "Serif italics and generous spacing." }
+    ]
+  }
 }

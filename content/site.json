@@ -32,6 +32,8 @@
     { "id": "work", "label": "Work", "href": "#work" },
     { "id": "path", "label": "Path", "href": "#path" },
     { "id": "about", "label": "About", "href": "#about" },
+    { "id": "writing", "label": "Writing", "href": "#writing" },
+    { "id": "moments", "label": "Moments", "href": "#moments" },
     { "id": "contact", "label": "Contact", "href": "#contact" }
   ]
 }

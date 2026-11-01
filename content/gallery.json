@@ -5,6 +5,12 @@
     "titleAccent": "from the way here.",
     "note": "Milestones, workplaces, and the occasional good day."
   },
+  "labels": {
+    "open": "Open image",
+    "close": "Close",
+    "previous": "Previous",
+    "next": "Next"
+  },
   "groups": [
     {
       "id": "milestones",

@@ -13,22 +13,37 @@ something is wrong.
 | --- | --- |
 | `site.json` | Name, role, location, email, socials, SEO, navigation |
 | `home.json` | Hero headline, intro, buttons, scroll label |
-| `projects.json` | Section copy, featured projects, case studies, links |
-| `experience.json` | Section copy, work history, slider labels |
-| `about.json` | Section copy, intro paragraphs, facts, skill cloud |
-| `contact.json` | Section copy, CTA, form configuration |
-| `footer.json` | Marquee, tagline, footer notes, copyright |
-| `blog.json` | Writing section copy, Medium profile, article list |
+| `projects.json` | Section copy, featured projects, case studies, other work |
+| `experience.json` | Section copy, work history, education, achievements |
+| `about.json` | Section copy, intro paragraphs, facts, skill cloud, interests |
+| `blog.json` | Writing section copy, article list, profile link |
 | `gallery.json` | Moments section copy and image groups |
+| `contact.json` | Section copy, CTA, contact form configuration |
+| `footer.json` | Marquee, tagline, footer notes, copyright |
+
+## Section order and navigation
+
+`site.json` → `navigation` is the single source of section order, dock labels,
+and the `(01)` markers beside each section. Keep one entry per section, in the
+order it appears on the page.
+
+Two sections stay hidden until they have content:
+
+- `writing` disappears while `blog.json` → `posts` is empty.
+- `moments` disappears while every group in `gallery.json` is empty.
+
+When you add the first post or image, make sure the matching `navigation` entry
+exists — the validator fails the build if it is missing.
 
 ## Adding a project
 
-Append an object to `items` in `projects.json`. Keep the fields in the same
-shape as the existing entries.
+Featured projects live in `projects.json` → `featured` and get a large panel in
+the horizontal rail; each one needs a case study. Smaller work goes in `other`
+and renders in the grid below the rail. Numbers are assigned from array order,
+so do not add them by hand.
 
 ```json
 {
-  "number": "04",
   "slug": "project-slug",
   "name": "Project name",
   "category": "Web · Product",
@@ -40,21 +55,45 @@ shape as the existing entries.
   "href": "https://example.com",
   "githubUrl": "https://github.com/you/project",
   "linkLabel": "Live demo",
-  "visual": "lisa",
-  "visualLabel": "Live / demo",
-  "visualNote": "Build · 2026",
+  "visual": {
+    "type": "dashboard",
+    "label": "Metrics / live",
+    "note": "Operations · 2026"
+  },
   "caseStudy": {
-    "problem": "What was wrong before this existed?",
-    "approach": "What did you build, and why those choices?",
-    "outcome": "What changed because it shipped?"
+    "sections": [
+      { "title": "The problem", "body": "What was wrong before this existed?" },
+      { "title": "The approach", "body": "What did you build, and why those choices?" },
+      { "title": "The outcome", "body": "What changed because it shipped?" }
+    ],
+    "metrics": [
+      { "label": "Daily users", "value": "1.2k" },
+      { "label": "Load time", "value": "−38%" }
+    ]
   }
 }
 ```
 
-- `visual` currently accepts `lisa`, `spently`, or `maargam`. Generic visual
-  types arrive in the next phase.
-- `href` and `githubUrl` are optional; remove them if the project has no link.
-- Keep `number` unique and two digits. Keep `slug` lowercase with hyphens.
+- `visual.type` accepts `lisa`, `spently`, and `maargam` for the bespoke
+  artwork, or `dashboard`, `terminal`, `mobile`, `chart`, and `grid` for a
+  generic motif. `visual.label` and `visual.note` are the small captions.
+- `caseStudy.sections` is a free list — add, rename, or reorder as needed.
+  `metrics` is optional.
+- `href`, `githubUrl`, `linkLabel`, and `caseStudy` are optional. A project
+  without a case study does not open an overlay; it links out instead.
+- Keep `slug` unique across `featured` and `other`.
+
+## Work, education, and achievements
+
+`experience.json` holds three things:
+
+- `items` — the work timeline rendered on the dial. Every item needs at least
+  one highlight and one stack entry; the dial represents time from newest to
+  oldest, so keep the array in that order.
+- `education` — degrees shown below the dial. The block disappears if `items`
+  is empty.
+- `achievements` — awards and certifications. Same rules: hidden when empty,
+  and `description` / `link` are optional per item.
 
 ## Writing entries
 
@@ -68,14 +107,14 @@ shape as the existing entries.
   "url": "https://medium.com/@you/article-slug",
   "publication": "Medium",
   "date": "2026-11-01",
-  "readTime": "6 min",
+  "readTime": "6 min read",
   "excerpt": "One or two sentences about the article.",
   "tags": ["Next.js", "Engineering"]
 }
 ```
 
-Set `profile.url` to your Medium profile when it exists. The section stays
-hidden until the first post is added.
+Set `profile.url` to your publication profile; the "read more" link appears
+only when it is set. The section stays hidden until the first post is added.
 
 ## Gallery images
 
@@ -93,22 +132,30 @@ hidden until the first post is added.
 }
 ```
 
-The validator checks that every referenced file exists. The section stays
-hidden until the first image is added.
+Groups with no items are skipped, and the section stays hidden until the first
+image exists. Use the real pixel dimensions in `width` / `height` so the grid
+reserves the right space. The validator checks that every referenced file
+exists.
 
 ## Contact form
 
-`contact.json` ships with the `mailto` provider so the form works without an
-account. To send through a form service, change `form.provider` and add the
-credentials:
+`contact.json` → `form` controls the fields, button labels, and feedback
+messages. It ships with the `mailto` provider so the form works without an
+account: submitting opens the visitor's mail app with the message prefilled.
+
+To send through a form service, change `form.provider` and add the credentials:
 
 - **Web3Forms** — `provider: "web3forms"`, paste the access key into
-  `accessKey`. The key is public by design, but keep the honeypot in place.
+  `accessKey`. Leave `endpoint` empty to use the default Web3Forms API.
 - **Formspree** — `provider: "formspree"`, paste the form URL into
   `endpoint`.
 
-If the provider is set but credentials are missing, the build fails rather than
-quietly dropping messages.
+The form includes a hidden honeypot field. If a hosted provider fails, the
+visitor sees `errorMessage` plus a `mailto` fallback link built from what they
+typed. If the provider is set but credentials are missing, the build fails
+rather than quietly dropping messages.
+
+Set `form.enabled` to `false` to hide the form and keep only the email CTA.
 
 ## Validation
 
@@ -116,8 +163,9 @@ Validation runs automatically through `assertContent()` in the server layout.
 It checks:
 
 - Required fields, URLs, emails, dates, and enums
-- Unique slugs, ids, project numbers, and navigation links
+- Unique slugs, ids, skill names, and navigation links
 - Navigation and hero anchors point to real sections
+- Writing and Moments have a navigation entry once they have content
 - Gallery images exist in `public/`
 - Form provider credentials are present when a provider is enabled
 

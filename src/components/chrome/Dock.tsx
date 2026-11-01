@@ -7,6 +7,25 @@ import { navItems } from "@/content";
 export default function Dock() {
   const [active, setActive] = useState("top");
   const visible = useRef<Record<string, boolean>>({});
+  const listRef = useRef<HTMLUListElement>(null);
+
+  useEffect(() => {
+    const list = listRef.current;
+    if (!list) return;
+    const link = list.querySelector<HTMLElement>('a[aria-current="true"]');
+    if (!link) return;
+
+    const listRect = list.getBoundingClientRect();
+    const linkRect = link.getBoundingClientRect();
+    const delta =
+      linkRect.left - listRect.left - (listRect.width - linkRect.width) / 2;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    list.scrollTo({
+      left: list.scrollLeft + delta,
+      behavior: reduced ? "auto" : "smooth",
+    });
+  }, [active]);
 
   useEffect(() => {
     const sections = navItems
@@ -46,17 +65,20 @@ export default function Dock() {
   return (
     <nav
       aria-label="Sections"
-      className="fixed bottom-4 left-1/2 z-[66] -translate-x-1/2 sm:bottom-6"
+      className="fixed bottom-4 left-1/2 z-[66] w-max max-w-[calc(100vw-0.75rem)] -translate-x-1/2 sm:bottom-6"
     >
-      <ul className="flex items-center gap-0.5 rounded-full border border-rule bg-paper/75 p-1.5 shadow-[0_16px_50px_-20px_rgba(0,0,0,0.45)] backdrop-blur-xl">
+      <ul
+        ref={listRef}
+        className="flex items-center gap-0.5 overflow-x-auto rounded-full border border-rule bg-paper/75 p-1.5 shadow-[0_16px_50px_-20px_rgba(0,0,0,0.45)] backdrop-blur-xl [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+      >
         {navItems.map((item) => {
           const isActive = active === item.id;
           return (
-            <li key={item.id}>
+            <li key={item.id} className="shrink-0">
               <a
                 href={item.href}
                 aria-current={isActive ? "true" : undefined}
-                className={`dock-link relative flex items-center rounded-full px-3 py-2 font-mono text-[9px] uppercase tracking-[0.14em] transition-colors sm:px-3.5 sm:text-[10px] ${
+                className={`dock-link relative flex items-center whitespace-nowrap rounded-full px-2 py-2 font-mono text-[8.5px] uppercase tracking-[0.08em] transition-colors sm:px-3.5 sm:text-[10px] sm:tracking-[0.14em] ${
                   isActive ? "text-paper" : "text-ink-soft hover:text-ink"
                 }`}
                 data-cursor-label={item.label}

@@ -175,6 +175,31 @@ export default function About() {
             </div>
           </Reveal>
         </div>
+
+        <div className="mt-16 grid gap-6 border-t border-rule pt-6 md:grid-cols-[0.35fr_0.65fr] md:gap-12">
+          <div>
+            <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-ink-faint">
+              {about.interests.label}
+            </p>
+            <p className="mt-3 max-w-[16rem] text-[13px] leading-6 text-ink-soft">
+              {about.interests.note}
+            </p>
+          </div>
+
+          <ul className="grid border-t border-rule sm:grid-cols-2 sm:gap-x-10">
+            {about.interests.items.map((item) => (
+              <li
+                key={item.label}
+                className="flex flex-col gap-1 border-b border-rule py-4"
+              >
+                <span className="text-[13px] text-ink">{item.label}</span>
+                <span className="text-[11px] leading-5 text-ink-faint">
+                  {item.note}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </section>
   );

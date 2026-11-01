@@ -4,20 +4,13 @@ import { useEffect, useRef } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import type { Project } from "@/content/schema";
 import { projectsSection } from "@/content";
-import LisaVisual from "@/components/projects/visuals/LisaVisual";
-import SpentlyVisual from "@/components/projects/visuals/SpentlyVisual";
-import MaargamVisual from "@/components/projects/visuals/MaargamVisual";
+import ProjectVisual from "@/components/projects/ProjectVisual";
 import { lockScroll } from "@/lib/scrollLock";
 import { isTopOverlay, pushOverlay } from "@/lib/overlayStack";
 
-const visuals = {
-  lisa: LisaVisual,
-  spently: SpentlyVisual,
-  maargam: MaargamVisual,
-};
-
 type CaseStudyOverlayProps = {
   project: Project;
+  index: number;
   total: number;
   origin: { x: number; y: number } | null;
   onClose: () => void;
@@ -28,6 +21,7 @@ type CaseStudyOverlayProps = {
 
 export default function CaseStudyOverlay({
   project,
+  index,
   total,
   origin,
   onClose,
@@ -39,7 +33,8 @@ export default function CaseStudyOverlay({
   const scrollRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const reduced = useReducedMotion();
-  const Visual = visuals[project.visual];
+  const number = String(index + 1).padStart(2, "0");
+  const caseStudy = project.caseStudy;
 
   useEffect(() => {
     const previousFocus = document.activeElement as HTMLElement | null;
@@ -123,7 +118,7 @@ export default function CaseStudyOverlay({
       >
         <div className="sticky top-0 z-20 -mx-5 flex items-center justify-between border-b border-rule bg-paper/90 px-5 py-4 backdrop-blur-xl sm:-mx-8 sm:px-8">
           <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-ink-faint sm:text-[10px]">
-            {projectsSection.caseStudyLabel} — {project.number} /{" "}
+            {projectsSection.caseStudyLabel} — {number} /{" "}
             {String(total).padStart(2, "0")}
           </p>
           <button
@@ -164,16 +159,19 @@ export default function CaseStudyOverlay({
             </div>
 
             <div className="relative h-[200px] rounded-xl border border-rule bg-surface p-4 sm:h-[260px]">
-              <Visual label={project.visualLabel} note={project.visualNote} />
+              <ProjectVisual project={project} />
             </div>
           </div>
 
           <dl className="mt-10 grid grid-cols-2 gap-x-6 gap-y-6 border-y border-rule py-6 sm:mt-14 sm:grid-cols-4">
             {[
-              ["Year", project.year],
-              ["Role", project.role],
-              ["Type", project.category.split(" · ")[0]],
-              ["Stack", project.stack.join(", ")],
+              [projectsSection.meta.year, project.year],
+              [projectsSection.meta.role, project.role],
+              [
+                projectsSection.meta.type,
+                project.category.split(" · ")[0],
+              ],
+              [projectsSection.meta.stack, project.stack.join(", ")],
             ].map(([label, value]) => (
               <div key={label}>
                 <dt className="font-mono text-[9px] uppercase tracking-[0.18em] text-ink-faint">
@@ -186,26 +184,28 @@ export default function CaseStudyOverlay({
             ))}
           </dl>
 
+          {caseStudy?.metrics && caseStudy.metrics.length > 0 && (
+            <dl className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
+              {caseStudy.metrics.map((metric) => (
+                <div
+                  key={metric.label}
+                  className="rounded-lg border border-rule bg-surface/60 px-4 py-3"
+                >
+                  <dt className="font-mono text-[9px] uppercase tracking-[0.18em] text-ink-faint">
+                    {metric.label}
+                  </dt>
+                  <dd className="mt-1 font-display text-2xl leading-none text-accent">
+                    {metric.value}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          )}
+
           <div className="mt-10 max-w-3xl space-y-10 sm:mt-14 sm:space-y-12">
-            {[
-              [
-                "01",
-                projectsSection.caseStudySections.problem,
-                project.caseStudy.problem,
-              ],
-              [
-                "02",
-                projectsSection.caseStudySections.approach,
-                project.caseStudy.approach,
-              ],
-              [
-                "03",
-                projectsSection.caseStudySections.outcome,
-                project.caseStudy.outcome,
-              ],
-            ].map(([number, title, body], index) => (
+            {(caseStudy?.sections ?? []).map((section, index) => (
               <motion.section
-                key={title}
+                key={section.title}
                 initial={reduced ? false : { opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
@@ -216,14 +216,14 @@ export default function CaseStudyOverlay({
               >
                 <div className="flex items-baseline gap-3">
                   <span className="font-mono text-[9px] tracking-[0.18em] text-accent">
-                    {number}
+                    {String(index + 1).padStart(2, "0")}
                   </span>
                   <h3 className="font-display text-2xl italic sm:text-3xl">
-                    {title}
+                    {section.title}
                   </h3>
                 </div>
                 <p className="mt-3 text-[14px] leading-7 text-ink-soft sm:text-[15px] sm:leading-8">
-                  {body}
+                  {section.body}
                 </p>
               </motion.section>
             ))}
@@ -236,7 +236,7 @@ export default function CaseStudyOverlay({
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full bg-ink px-5 py-3 text-[12px] font-medium text-paper transition-colors hover:bg-accent hover:text-on-accent"
-                data-cursor-label="Visit"
+                data-cursor-label={projectsSection.labels.visit}
               >
                 {project.linkLabel ?? "Live demo"}
                 <span aria-hidden="true">↗</span>

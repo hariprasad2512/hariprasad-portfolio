@@ -4,8 +4,12 @@ import { useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import {
   experience,
+  experienceAchievements,
+  experienceEducation,
   experiencePanel,
   experienceSection,
+  hasAchievements,
+  hasEducation,
   sectionNumber,
 } from "@/content";
 
@@ -237,6 +241,99 @@ export default function Experience() {
             </AnimatePresence>
           </div>
         </div>
+
+        {(hasEducation || hasAchievements) && (
+          <div className="mt-5 grid gap-5 md:grid-cols-2">
+            {hasEducation && (
+              <div
+                className={`rounded-xl border border-rule bg-surface/60 p-5 sm:p-7 ${
+                  hasAchievements ? "" : "md:col-span-2"
+                }`}
+              >
+                <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-ink-faint">
+                  {experienceEducation.label}
+                </p>
+
+                <div className="mt-6 space-y-8">
+                  {experienceEducation.items.map((item) => (
+                    <article key={item.id}>
+                      <h3 className="font-display text-[clamp(2rem,3.6vw,2.8rem)] leading-[0.95]">
+                        {item.institution}
+                      </h3>
+                      <p className="mt-2 text-sm text-ink-soft">
+                        {item.degree}
+                      </p>
+                      <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.14em] text-ink-faint">
+                        {item.period} · {item.location}
+                      </p>
+                      <p className="mt-4 max-w-xl text-[13px] leading-6 text-ink-soft">
+                        {item.detail}
+                      </p>
+
+                      {item.highlights && item.highlights.length > 0 && (
+                        <ul className="mt-4 space-y-2">
+                          {item.highlights.map((highlight) => (
+                            <li
+                              key={highlight}
+                              className="flex gap-3 text-[12px] leading-5 text-ink-soft"
+                            >
+                              <span className="pt-2 text-accent">✳</span>
+                              <span>{highlight}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </article>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {hasAchievements && (
+              <div className="rounded-xl border border-rule bg-surface/60 p-5 sm:p-7">
+                <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-ink-faint">
+                  {experienceAchievements.label}
+                </p>
+                <p className="mt-3 max-w-sm text-[13px] leading-6 text-ink-soft">
+                  {experienceAchievements.note}
+                </p>
+
+                <ul className="mt-6 divide-y divide-rule border-t border-rule">
+                  {experienceAchievements.items.map((item) => (
+                    <li key={item.id} className="py-4 first:pt-4 last:pb-0">
+                      <div className="flex items-baseline justify-between gap-4">
+                        <h3 className="text-[13px] font-medium text-ink">
+                          {item.title}
+                        </h3>
+                        <span className="font-mono text-[9px] uppercase tracking-[0.14em] text-ink-faint">
+                          {item.year}
+                        </span>
+                      </div>
+                      <p className="mt-1 font-mono text-[9px] uppercase tracking-[0.14em] text-accent">
+                        {item.issuer}
+                      </p>
+                      {item.description && (
+                        <p className="mt-2 text-[12px] leading-5 text-ink-soft">
+                          {item.description}
+                        </p>
+                      )}
+                      {item.link && (
+                        <a
+                          href={item.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="mt-2 inline-block text-[11px] text-ink-soft underline decoration-rule-strong underline-offset-4 transition-colors hover:text-ink"
+                        >
+                          View credential ↗
+                        </a>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </section>
   );

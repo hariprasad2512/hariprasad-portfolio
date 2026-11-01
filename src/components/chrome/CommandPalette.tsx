@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { useTheme } from "@/components/chrome/ThemeProvider";
 import { toast } from "@/components/chrome/Toaster";
-import { navItems, projects, site } from "@/content";
+import { allProjects, navItems, site } from "@/content";
 import { lockScroll } from "@/lib/scrollLock";
 import { isTopOverlay, pushOverlay } from "@/lib/overlayStack";
 
@@ -45,7 +45,7 @@ export default function CommandPalette() {
       },
     }));
 
-    const projectItems: PaletteItem[] = projects.map((project) => ({
+    const projectItems: PaletteItem[] = allProjects.map((project) => ({
       id: `project-${project.slug}`,
       label: project.name,
       group: "Projects",
@@ -53,9 +53,13 @@ export default function CommandPalette() {
       keywords: project.stack.join(" ") + " case study",
       run: () => {
         close();
-        window.dispatchEvent(
-          new CustomEvent("signal:open-project", { detail: project.slug }),
-        );
+        if (project.caseStudy) {
+          window.dispatchEvent(
+            new CustomEvent("signal:open-project", { detail: project.slug }),
+          );
+        } else if (project.href) {
+          window.open(project.href, "_blank", "noopener,noreferrer");
+        }
       },
     }));
 

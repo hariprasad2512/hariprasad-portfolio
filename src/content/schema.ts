@@ -66,14 +66,37 @@ const sectionHeadingSchema = z.object({
   note: nonEmpty,
 });
 
-const caseStudySchema = z.object({
-  problem: nonEmpty,
-  approach: nonEmpty,
-  outcome: nonEmpty,
+export const projectVisualSchema = z.object({
+  type: z.enum([
+    "lisa",
+    "spently",
+    "maargam",
+    "dashboard",
+    "terminal",
+    "mobile",
+    "chart",
+    "grid",
+  ]),
+  label: nonEmpty,
+  note: nonEmpty,
+});
+
+const caseStudySectionSchema = z.object({
+  title: nonEmpty,
+  body: nonEmpty,
+});
+
+const caseStudyMetricSchema = z.object({
+  label: nonEmpty,
+  value: nonEmpty,
+});
+
+export const caseStudySchema = z.object({
+  sections: z.array(caseStudySectionSchema).min(1),
+  metrics: z.array(caseStudyMetricSchema).optional(),
 });
 
 export const projectSchema = z.object({
-  number: z.string().regex(/^\d{2}$/, "Use a two-digit number, for example 01"),
   slug,
   name: nonEmpty,
   category: nonEmpty,
@@ -85,10 +108,8 @@ export const projectSchema = z.object({
   href: url.optional(),
   githubUrl: url.optional(),
   linkLabel: nonEmpty.optional(),
-  visual: z.enum(["lisa", "spently", "maargam"]),
-  visualLabel: nonEmpty,
-  visualNote: nonEmpty,
-  caseStudy: caseStudySchema,
+  visual: projectVisualSchema,
+  caseStudy: caseStudySchema.optional(),
 });
 
 export const projectsContentSchema = z.object({
@@ -96,11 +117,6 @@ export const projectsContentSchema = z.object({
     railHint: nonEmpty,
     caseStudyLabel: nonEmpty,
     caseStudyCta: nonEmpty,
-    caseStudySections: z.object({
-      problem: nonEmpty,
-      approach: nonEmpty,
-      outcome: nonEmpty,
-    }),
     labels: z.object({
       github: nonEmpty,
       previous: nonEmpty,
@@ -111,9 +127,18 @@ export const projectsContentSchema = z.object({
       source: nonEmpty,
       close: nonEmpty,
       caseStudyCursor: nonEmpty,
+      visit: nonEmpty,
     }),
+    meta: z.object({
+      year: nonEmpty,
+      role: nonEmpty,
+      type: nonEmpty,
+      stack: nonEmpty,
+    }),
+    other: sectionHeadingSchema,
   }),
-  items: z.array(projectSchema).min(1),
+  featured: z.array(projectSchema).min(1),
+  other: z.array(projectSchema),
 });
 
 export const experienceItemSchema = z.object({
@@ -128,6 +153,25 @@ export const experienceItemSchema = z.object({
   highlights: z.array(nonEmpty).min(1),
 });
 
+export const educationItemSchema = z.object({
+  id: slug,
+  institution: nonEmpty,
+  degree: nonEmpty,
+  period: nonEmpty,
+  location: nonEmpty,
+  detail: nonEmpty,
+  highlights: z.array(nonEmpty).optional(),
+});
+
+export const achievementSchema = z.object({
+  id: slug,
+  title: nonEmpty,
+  issuer: nonEmpty,
+  year: nonEmpty,
+  description: z.string().optional(),
+  link: url.optional(),
+});
+
 export const experienceContentSchema = z.object({
   section: sectionHeadingSchema,
   panel: z.object({
@@ -135,6 +179,15 @@ export const experienceContentSchema = z.object({
     hint: nonEmpty,
   }),
   items: z.array(experienceItemSchema).min(1),
+  education: z.object({
+    label: nonEmpty,
+    items: z.array(educationItemSchema),
+  }),
+  achievements: z.object({
+    label: nonEmpty,
+    note: nonEmpty,
+    items: z.array(achievementSchema),
+  }),
 });
 
 const skillSchema = z.object({
@@ -161,6 +214,23 @@ export const aboutContentSchema = z.object({
     idleMessage: nonEmpty,
   }),
   skills: z.array(skillSchema).min(1),
+  interests: z.object({
+    label: nonEmpty,
+    note: nonEmpty,
+    items: z
+      .array(
+        z.object({
+          label: nonEmpty,
+          note: nonEmpty,
+        }),
+      )
+      .min(1),
+  }),
+});
+
+const formFieldSchema = z.object({
+  label: nonEmpty,
+  placeholder: nonEmpty,
 });
 
 export const contactContentSchema = z.object({
@@ -185,8 +255,19 @@ export const contactContentSchema = z.object({
     endpoint: optionalUrl,
     accessKey: z.string(),
     subject: nonEmpty,
+    title: nonEmpty,
+    note: nonEmpty,
+    fields: z.object({
+      name: formFieldSchema,
+      email: formFieldSchema,
+      message: formFieldSchema,
+    }),
+    submit: nonEmpty,
+    submitting: nonEmpty,
+    mailtoMessage: nonEmpty,
     successMessage: nonEmpty,
     errorMessage: nonEmpty,
+    fallback: nonEmpty,
   }),
 });
 
@@ -216,15 +297,16 @@ export const blogPostSchema = z.object({
   readTime: nonEmpty,
   excerpt: nonEmpty,
   tags: z.array(nonEmpty),
-  coverImage: z.string().optional(),
 });
 
 export const blogContentSchema = z.object({
   section: sectionHeadingSchema,
   profile: z.object({
-    label: nonEmpty,
     url: optionalUrl,
-    handle: z.string(),
+  }),
+  labels: z.object({
+    read: nonEmpty,
+    profileCta: nonEmpty,
   }),
   posts: z.array(blogPostSchema),
 });
@@ -242,6 +324,12 @@ export const galleryItemSchema = z.object({
 
 export const galleryContentSchema = z.object({
   section: sectionHeadingSchema,
+  labels: z.object({
+    open: nonEmpty,
+    close: nonEmpty,
+    previous: nonEmpty,
+    next: nonEmpty,
+  }),
   groups: z
     .array(
       z.object({
@@ -257,8 +345,12 @@ export type SiteContent = z.infer<typeof siteSchema>;
 export type HomeContent = z.infer<typeof homeSchema>;
 export type ProjectsContent = z.infer<typeof projectsContentSchema>;
 export type Project = z.infer<typeof projectSchema>;
+export type CaseStudy = z.infer<typeof caseStudySchema>;
+export type CaseStudySection = z.infer<typeof caseStudySectionSchema>;
 export type ExperienceContent = z.infer<typeof experienceContentSchema>;
 export type ExperienceItem = z.infer<typeof experienceItemSchema>;
+export type EducationItem = z.infer<typeof educationItemSchema>;
+export type Achievement = z.infer<typeof achievementSchema>;
 export type AboutContent = z.infer<typeof aboutContentSchema>;
 export type ContactContent = z.infer<typeof contactContentSchema>;
 export type FooterContent = z.infer<typeof footerContentSchema>;

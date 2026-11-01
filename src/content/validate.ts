@@ -130,13 +130,8 @@ export function assertContent() {
     errors,
   );
   findDuplicates(
-    projects.items.map((item) => item.slug),
+    [...projects.featured, ...projects.other].map((item) => item.slug),
     "content/projects.json slugs",
-    errors,
-  );
-  findDuplicates(
-    projects.items.map((item) => item.number),
-    "content/projects.json numbers",
     errors,
   );
   findDuplicates(
@@ -145,8 +140,23 @@ export function assertContent() {
     errors,
   );
   findDuplicates(
+    experience.education.items.map((item) => item.id),
+    "content/experience.json education ids",
+    errors,
+  );
+  findDuplicates(
+    experience.achievements.items.map((item) => item.id),
+    "content/experience.json achievement ids",
+    errors,
+  );
+  findDuplicates(
     about.skills.map((item) => item.name),
     "content/about.json skills",
+    errors,
+  );
+  findDuplicates(
+    about.interests.items.map((item) => item.label),
+    "content/about.json interests",
     errors,
   );
   findDuplicates(
@@ -175,6 +185,23 @@ export function assertContent() {
       .map((item) => (item.href.startsWith("#") ? item.href.slice(1) : null))
       .filter((item): item is string => Boolean(item)),
   );
+
+  const navigationIds = new Set(site.navigation.map((item) => item.id));
+
+  if (blog.posts.length > 0 && !navigationIds.has("writing")) {
+    errors.push(
+      'content/site.json: add a "writing" entry to navigation so the Writing section is reachable',
+    );
+  }
+
+  if (
+    gallery.groups.some((group) => group.items.length > 0) &&
+    !navigationIds.has("moments")
+  ) {
+    errors.push(
+      'content/site.json: add a "moments" entry to navigation so the Moments section is reachable',
+    );
+  }
 
   const internalLinks = [
     ...site.navigation.map((item) => item.href),

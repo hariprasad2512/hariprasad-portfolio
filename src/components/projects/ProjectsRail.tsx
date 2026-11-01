@@ -7,9 +7,16 @@ import {
   useMotionValueEvent,
   useScroll,
 } from "motion/react";
-import { projects, projectsSection, sectionNumber } from "@/content";
+import {
+  allProjects,
+  caseStudyProjects,
+  featuredProjects,
+  projectsSection,
+  sectionNumber,
+} from "@/content";
 import ProjectPanel from "@/components/projects/ProjectPanel";
 import CaseStudyOverlay from "@/components/projects/CaseStudyOverlay";
+import OtherProjects from "@/components/projects/OtherProjects";
 
 type ActiveProject = {
   slug: string;
@@ -62,7 +69,12 @@ export default function ProjectsRail() {
   useEffect(() => {
     function onOpenProject(event: Event) {
       const slug = (event as CustomEvent<string>).detail;
-      if (projects.some((project) => project.slug === slug)) open(slug);
+      const project = allProjects.find((item) => item.slug === slug);
+      if (!project) return;
+      if (project.caseStudy) open(slug);
+      else if (project.href) {
+        window.open(project.href, "_blank", "noopener,noreferrer");
+      }
     }
     window.addEventListener("signal:open-project", onOpenProject);
     return () =>
@@ -81,8 +93,8 @@ export default function ProjectsRail() {
       `${-value * distance}px`,
     );
     const next = Math.min(
-      projects.length - 1,
-      Math.max(0, Math.round(value * (projects.length - 1))),
+      featuredProjects.length - 1,
+      Math.max(0, Math.round(value * (featuredProjects.length - 1))),
     );
     setCurrent(next);
   });
@@ -95,15 +107,16 @@ export default function ProjectsRail() {
   }, [distance, scrollYProgress]);
 
   const activeIndex = active
-    ? projects.findIndex((project) => project.slug === active.slug)
+    ? caseStudyProjects.findIndex((project) => project.slug === active.slug)
     : -1;
 
   function navigate(direction: 1 | -1) {
     if (activeIndex < 0) return;
     const next =
-      (activeIndex + direction + projects.length) % projects.length;
+      (activeIndex + direction + caseStudyProjects.length) %
+      caseStudyProjects.length;
     setActive((value) =>
-      value ? { ...value, slug: projects[next].slug } : value,
+      value ? { ...value, slug: caseStudyProjects[next].slug } : value,
     );
   }
 
@@ -138,11 +151,12 @@ export default function ProjectsRail() {
             ref={trackRef}
             className="flex flex-col gap-5 px-5 pb-14 will-change-transform md:flex-row md:items-stretch md:gap-6 md:px-8 md:pb-0 md:[transform:translate3d(var(--rail-x,0px),0,0)]"
           >
-            {projects.map((project) => (
+            {featuredProjects.map((project, index) => (
               <ProjectPanel
                 key={project.slug}
                 project={project}
-                total={projects.length}
+                index={index}
+                total={featuredProjects.length}
                 onOpen={open}
               />
             ))}
@@ -163,28 +177,36 @@ export default function ProjectsRail() {
             </span>
             <span className="whitespace-nowrap font-mono text-[9px] uppercase tracking-[0.18em] text-ink">
               {String(current + 1).padStart(2, "0")} /{" "}
-              {String(projects.length).padStart(2, "0")} —{" "}
-              {projects[current]?.name}
+              {String(featuredProjects.length).padStart(2, "0")} —{" "}
+              {featuredProjects[current]?.name}
             </span>
           </div>
         </div>
       </div>
 
+      <OtherProjects />
+
       <AnimatePresence>
         {active && activeIndex >= 0 && (
           <CaseStudyOverlay
             key="case-study"
-            project={projects[activeIndex]}
-            total={projects.length}
+            project={caseStudyProjects[activeIndex]}
+            index={activeIndex}
+            total={caseStudyProjects.length}
             origin={active.origin}
             onClose={close}
             onNavigate={navigate}
             previous={
-              projects[
-                (activeIndex - 1 + projects.length) % projects.length
+              caseStudyProjects[
+                (activeIndex - 1 + caseStudyProjects.length) %
+                  caseStudyProjects.length
               ]
             }
-            next={projects[(activeIndex + 1) % projects.length]}
+            next={
+              caseStudyProjects[
+                (activeIndex + 1) % caseStudyProjects.length
+              ]
+            }
           />
         )}
       </AnimatePresence>

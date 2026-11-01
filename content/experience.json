@@ -40,5 +40,27 @@
         "Improved the user experience of VR-based flight-phobia treatments through usability testing and iterative interface refinements."
       ]
     }
-  ]
+  ],
+  "education": {
+    "label": "Education",
+    "items": [
+      {
+        "id": "iiit-sri-city",
+        "institution": "IIIT Sri City",
+        "degree": "B.Tech, Computer Science",
+        "period": "Class of 2025",
+        "location": "Sri City, India",
+        "detail": "Four years of computer science with a focus on systems, web engineering, and applied AI — and a lot of time spent shipping side projects.",
+        "highlights": [
+          "Graduated with a B.Tech in Computer Science in 2025.",
+          "Built the first versions of Lisa and Maargam alongside coursework."
+        ]
+      }
+    ]
+  },
+  "achievements": {
+    "label": "Achievements & certifications",
+    "note": "Awards, certifications, and other markers worth keeping.",
+    "items": []
+  }
 }

@@ -6,9 +6,11 @@
     "note": "Occasional writing about the things I ship and the problems behind them."
   },
   "profile": {
-    "label": "Medium",
-    "url": "",
-    "handle": ""
+    "url": ""
+  },
+  "labels": {
+    "read": "Read article",
+    "profileCta": "Read more on Medium"
   },
   "posts": []
 }
