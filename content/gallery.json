@@ -1,0 +1,31 @@
+{
+  "section": {
+    "eyebrow": "Moments",
+    "title": "A few frames",
+    "titleAccent": "from the way here.",
+    "note": "Milestones, workplaces, and the occasional good day."
+  },
+  "labels": {
+    "open": "Open image",
+    "close": "Close",
+    "previous": "Previous",
+    "next": "Next"
+  },
+  "groups": [
+    {
+      "id": "milestones",
+      "label": "Achievements & milestones",
+      "items": []
+    },
+    {
+      "id": "workplace",
+      "label": "Workplace & behind the scenes",
+      "items": []
+    },
+    {
+      "id": "events",
+      "label": "Events & experiences",
+      "items": []
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "section": {
+    "eyebrow": "Contact",
+    "titleLines": ["Let's make", "something"],
+    "titleAccent": "people use."
+  },
+  "intro": "I'm looking for full-stack, product engineering, or AI-adjacent roles — and I'm always up for a good side project. The fastest way in is email.",
+  "cta": {
+    "label": "Say hi",
+    "note": "opens mail",
+    "cursorLabel": "Say hi"
+  },
+  "labels": {
+    "copyEmail": "Copy email",
+    "email": "Email"
+  },
+  "form": {
+    "enabled": true,
+    "provider": "mailto",
+    "endpoint": "",
+    "accessKey": "",
+    "subject": "Portfolio enquiry",
+    "title": "Send a message",
+    "note": "Have a role, a project, or just a question? Drop a note here and I'll get back to you.",
+    "fields": {
+      "name": { "label": "Name", "placeholder": "Your name" },
+      "email": { "label": "Email", "placeholder": "you@example.com" },
+      "message": { "label": "Message", "placeholder": "What's on your mind?" }
+    },
+    "submit": "Send message",
+    "submitting": "Sending…",
+    "mailtoMessage": "Opening your mail app — send the draft from there.",
+    "successMessage": "Message sent — I'll get back to you soon.",
+    "errorMessage": "Something went wrong. Email works too.",
+    "fallback": "Email me directly"
+  }
+}

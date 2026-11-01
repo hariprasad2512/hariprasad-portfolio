@@ -1,0 +1,39 @@
+{
+  "name": "Hariprasad Anuganti",
+  "firstName": "Hariprasad",
+  "role": "Full-stack developer",
+  "location": "Hyderabad, India",
+  "coordinates": "17.385° N / 78.486° E",
+  "availability": "Open to new work",
+  "email": "hprasad887@gmail.com",
+  "socials": [
+    {
+      "id": "github",
+      "label": "GitHub",
+      "url": "https://github.com/hariprasad2512",
+      "handle": "github.com/hariprasad2512"
+    },
+    {
+      "id": "linkedin",
+      "label": "LinkedIn",
+      "url": "https://linkedin.com/in/hariprasad-anuganti",
+      "handle": "in/hariprasad-anuganti"
+    }
+  ],
+  "seo": {
+    "title": "Hariprasad Anuganti — Full-stack developer",
+    "description": "Hariprasad Anuganti builds web, mobile, and AI-powered products from Hyderabad, India. Explore Lisa, Spently, and Maargam.",
+    "ogTitle": "Hariprasad Anuganti — Full-stack developer",
+    "ogDescription": "Web, mobile, and AI-powered products built with care. Selected work and case studies.",
+    "twitterCard": "summary_large_image"
+  },
+  "navigation": [
+    { "id": "top", "label": "Index", "href": "#top" },
+    { "id": "work", "label": "Work", "href": "#work" },
+    { "id": "path", "label": "Path", "href": "#path" },
+    { "id": "about", "label": "About", "href": "#about" },
+    { "id": "writing", "label": "Writing", "href": "#writing" },
+    { "id": "moments", "label": "Moments", "href": "#moments" },
+    { "id": "contact", "label": "Contact", "href": "#contact" }
+  ]
+}

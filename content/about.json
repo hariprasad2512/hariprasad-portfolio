@@ -1,0 +1,46 @@
+{
+  "section": {
+    "eyebrow": "About",
+    "title": "A developer with a",
+    "titleAccent": "product habit.",
+    "note": "I care about the whole path: the data model, the API, the interface, and the last ten percent of polish."
+  },
+  "intro": [
+    "I graduated in Computer Science from IIIT Sri City in 2025. Since then I've shipped a delivery app, a B2B project platform, an AI voice assistant, and a few things in between.",
+    "My favourite part of the job is the translation step — turning a fuzzy request into a working screen, a clean endpoint, or a model call that behaves. I'd rather ship something small that holds up than something big that only demos well."
+  ],
+  "facts": [
+    { "label": "Based in", "value": "Hyderabad, India" },
+    { "label": "Education", "value": "B.Tech CS, IIIT Sri City — 2025" },
+    { "label": "Focus", "value": "Full-stack · Mobile · AI" },
+    { "label": "Currently", "value": "Open to new work" }
+  ],
+  "cloud": {
+    "backgroundWord": "tools",
+    "idleMessage": "Hover a tool to see where it shipped."
+  },
+  "skills": [
+    { "name": "Python", "usedIn": "Spently · Unibasket", "x": 6, "y": 14, "size": "lg" },
+    { "name": "TypeScript", "usedIn": "Lisa · this site", "x": 58, "y": 8, "size": "md" },
+    { "name": "React", "usedIn": "Lisa", "x": 34, "y": 30, "size": "lg" },
+    { "name": "Next.js", "usedIn": "This portfolio", "x": 70, "y": 26, "size": "md" },
+    { "name": "Django", "usedIn": "Spently", "x": 4, "y": 48, "size": "md" },
+    { "name": "FastAPI", "usedIn": "Lisa", "x": 46, "y": 54, "size": "md" },
+    { "name": "Flutter", "usedIn": "Maargam · Unibasket", "x": 70, "y": 50, "size": "lg" },
+    { "name": "PostgreSQL", "usedIn": "Lisa · Spently", "x": 16, "y": 70, "size": "md" },
+    { "name": "MongoDB", "usedIn": "MERN client work", "x": 44, "y": 78, "size": "sm" },
+    { "name": "Node.js", "usedIn": "Unimatix", "x": 62, "y": 74, "size": "sm" },
+    { "name": "Firebase", "usedIn": "Unibasket", "x": 78, "y": 66, "size": "sm" },
+    { "name": "Dart", "usedIn": "Maargam", "x": 86, "y": 38, "size": "sm" }
+  ],
+  "interests": {
+    "label": "Off the clock",
+    "note": "What I gravitate toward when there's no ticket to close.",
+    "items": [
+      { "label": "Developer tools", "note": "Editors, CLIs, and tiny automations." },
+      { "label": "AI interfaces", "note": "Making models feel less like a console." },
+      { "label": "Offline-first software", "note": "Things that keep working without signal." },
+      { "label": "Typography", "note": "Serif italics and generous spacing." }
+    ]
+  }
+}

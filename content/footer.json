@@ -1,0 +1,11 @@
+{
+  "marquee": [
+    { "text": "Open to work", "emphasis": true },
+    { "text": "Full-stack developer", "emphasis": false },
+    { "text": "Hyderabad → anywhere", "emphasis": true }
+  ],
+  "tagline": "Building web, mobile, and AI products from Hyderabad, India.",
+  "note": "Built with Next.js, Motion, and an unreasonable amount of grain.",
+  "typeNote": "Type: Instrument Serif / Geist",
+  "copyright": "© 2026 Hariprasad Anuganti"
+}
