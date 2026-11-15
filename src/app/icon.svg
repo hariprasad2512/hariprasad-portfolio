@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <style>
+    .glyph { fill: #2e2b28; }
+    .slash { fill: #25919a; }
+    @media (prefers-color-scheme: dark) {
+      .glyph { fill: #f4f3f0; }
+    }
+  </style>
+  <text
+    x="32"
+    y="37.3"
+    text-anchor="middle"
+    font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace"
+    font-weight="700"
+    font-size="20.5"
+  ><tspan class="glyph">&lt;</tspan><tspan class="slash">/</tspan><tspan class="glyph">hp&gt;</tspan></text>
+</svg>
