@@ -8,10 +8,19 @@
   </style>
   <text
     x="32"
-    y="37.3"
+    y="25.5"
     text-anchor="middle"
     font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace"
     font-weight="700"
-    font-size="20.5"
-  ><tspan class="glyph">&lt;</tspan><tspan class="slash">/</tspan><tspan class="glyph">hp&gt;</tspan></text>
+    font-size="30"
+  ><tspan class="glyph">&lt;</tspan><tspan class="slash" font-size="27">/</tspan></text>
+  <text
+    x="32"
+    y="55"
+    text-anchor="middle"
+    font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace"
+    font-weight="700"
+    font-size="30"
+    class="glyph"
+  >hp&gt;</text>
 </svg>
