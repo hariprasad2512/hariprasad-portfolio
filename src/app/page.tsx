@@ -30,21 +30,14 @@ export default async function Home() {
       <Hero />
 
       {/* About — short intro, stays on the home page. */}
-      <Section id="about" eyebrow="about" title="A developer with a product habit">
+      <Section id="about" eyebrow="about" title="Problem Solver by Heart. Builder by Nature.">
         <Reveal>
           <div className="max-w-prose space-y-4 text-[15px] leading-relaxed text-muted">
             {profile.about.map((paragraph) => (
               <p key={paragraph.slice(0, 24)}>{paragraph}</p>
             ))}
           </div>
-          <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2">
-            {profile.interests.map((interest) => (
-              <li key={interest.label} className="text-sm text-muted">
-                <span className="text-foreground">{interest.label}</span>
-                <span className="font-mono text-xs"> — {interest.note}</span>
-              </li>
-            ))}
-          </ul>
+          
         </Reveal>
       </Section>
 
