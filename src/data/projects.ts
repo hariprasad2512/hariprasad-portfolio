@@ -34,20 +34,37 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/hariprasad2512/lisa-v2",
     linkLabel: "Live demo",
     featured: true,
+    image: "/projects/lisa.png"
   },
+  
   {
     number: "02",
     name: "Spently",
     category: "Web · Personal Finance",
     description:
       "A personal finance tracker for securely recording, categorizing, filtering, and visualizing everyday expenses.",
+    githubUrl: "https://github.com/hariprasad2512/spently-app",
     href: "https://spently-app.onrender.com/",
     stack: ["Python", "Django", "PostgreSQL", "Chart.js"],
     linkLabel: "Explore Spently",
     featured: true,
+    image: "/projects/open-events.png"
   },
   {
     number: "03",
+    name: "Spently",
+    category: "Web · Personal Finance",
+    description:
+      "A personal finance tracker for securely recording, categorizing, filtering, and visualizing everyday expenses.",
+    githubUrl: "https://github.com/hariprasad2512/spently-app",
+    href: "https://spently-app.onrender.com/",
+    stack: ["Python", "Django", "PostgreSQL", "Chart.js"],
+    linkLabel: "Explore Spently",
+    featured: true,
+    image: "/projects/spently.png"
+  },
+  {
+    number: "04",
     name: "Maargam",
     category: "Mobile · Public Transport",
     description:
