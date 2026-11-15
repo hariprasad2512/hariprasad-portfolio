@@ -16,6 +16,7 @@ export const metadata: Metadata = {
   title: "Achievements",
   description:
     "Hackathon results, certifications, academic milestones, and other accomplishments.",
+  alternates: { canonical: "/achievements" },
 };
 
 const categoryIcons: Record<AchievementCategory, LucideIcon> = {

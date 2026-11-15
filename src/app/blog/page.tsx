@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: "Blog",
   description:
     "Technical articles and notes by Hariprasad Anuganti, published on Medium.",
+  alternates: { canonical: "/blog" },
 };
 
 const formatDate = (iso: string) =>

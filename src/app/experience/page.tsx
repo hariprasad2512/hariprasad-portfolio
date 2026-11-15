@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "Experience",
   description:
     "The complete professional timeline of Hariprasad Anuganti — roles, responsibilities, and technologies.",
+  alternates: { canonical: "/experience" },
 };
 
 export default function ExperiencePage() {

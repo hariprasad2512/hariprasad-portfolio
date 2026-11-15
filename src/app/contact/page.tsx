@@ -9,6 +9,7 @@ import { profile } from "@/data/profile";
 
 export const metadata: Metadata = {
   title: "Contact",
+  alternates: { canonical: "/contact" },
   description: `Get in touch with ${profile.name} — email, GitHub, LinkedIn, X, and Medium.`,
 };
 

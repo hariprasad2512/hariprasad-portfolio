@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "Skills",
   description:
     "Languages, frameworks, databases, and tools Hariprasad Anuganti works with.",
+  alternates: { canonical: "/skills" },
 };
 
 export default function SkillsPage() {

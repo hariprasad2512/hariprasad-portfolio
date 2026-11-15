@@ -1,6 +1,10 @@
 /**
  * Professional experience — rendered as a vertical timeline.
  * Add, remove, or reorder entries here.
+ *
+ * Optional `logo`: path (under /public) to a company logo, e.g.
+ *   logo: "/logos/keystone.png"
+ * Without it, a rounded badge with the company's initials is shown.
  */
 
 export type ExperienceItem = {
@@ -10,7 +14,7 @@ export type ExperienceItem = {
   location: string;
   highlights: string[];
   tech: string[];
-  logo?: string; // optional path under /public
+  logo?: string;
 };
 
 export const experience: ExperienceItem[] = [

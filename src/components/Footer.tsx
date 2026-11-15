@@ -45,7 +45,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <p className="mt-10 font-mono text-[11px] text-muted/70">
+        <p className="mt-10 font-mono text-[11px] text-muted">
           © <FooterYear /> {profile.name} · built with next.js + tailwind css
         </p>
       </div>

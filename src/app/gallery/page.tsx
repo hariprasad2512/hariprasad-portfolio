@@ -3,15 +3,18 @@ import Container from "@/components/ui/Container";
 import PageHeader from "@/components/ui/PageHeader";
 import Reveal from "@/components/ui/Reveal";
 import Gallery from "@/components/Gallery/Gallery";
-import { galleryPhotos } from "@/data/gallery";
+import { getGalleryPhotos } from "@/lib/gallery";
 
 export const metadata: Metadata = {
   title: "Gallery",
   description:
     "Photographs from hackathons, college events, conferences, and everyday moments.",
+  alternates: { canonical: "/gallery" },
 };
 
-export default function GalleryPage() {
+export default async function GalleryPage() {
+  const photos = await getGalleryPhotos();
+
   return (
     <Container>
       <PageHeader
@@ -22,7 +25,7 @@ export default function GalleryPage() {
 
       <Reveal>
         <div className="pb-8">
-          <Gallery photos={galleryPhotos} />
+          <Gallery photos={photos} />
         </div>
       </Reveal>
     </Container>

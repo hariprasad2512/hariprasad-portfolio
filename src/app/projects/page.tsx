@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "Projects",
   description:
     "Web, mobile, and AI projects built by Hariprasad Anuganti — with links to live demos and source code.",
+  alternates: { canonical: "/projects" },
 };
 
 export default function ProjectsPage() {

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { ExperienceItem as ExperienceItemType } from "@/data/experience";
 import { TechIcon } from "./ui/TechIcon";
 
@@ -27,13 +28,25 @@ export default function ExperienceItem({
   return (
     <article>
       <div className="flex items-start gap-4">
-        {/* Logo placeholder — add `logo` to the entry in src/data/experience.ts */}
-        <div
-          aria-hidden="true"
-          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border bg-card font-mono text-[13px] text-muted"
-        >
-          {initials(item.company)}
-        </div>
+        {/* Company logo (add `logo: "/logos/<file>"` to the entry in
+            src/data/experience.ts) or initials fallback. */}
+        {item.logo ? (
+          <Image
+            src={item.logo}
+            alt=""
+            width={40}
+            height={40}
+            sizes="40px"
+            className="h-10 w-10 shrink-0 rounded-full border border-border bg-card object-contain p-1"
+          />
+        ) : (
+          <div
+            aria-hidden="true"
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border bg-card font-mono text-[13px] text-muted"
+          >
+            {initials(item.company)}
+          </div>
+        )}
 
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">

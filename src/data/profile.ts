@@ -71,6 +71,7 @@ export const profile = {
 };
 
 export const navLinks = [
+  { href: "/", label: "home" },
   { href: "/experience", label: "experience" },
   { href: "/projects", label: "projects" },
   { href: "/gallery", label: "gallery" },

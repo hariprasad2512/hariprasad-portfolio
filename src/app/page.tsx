@@ -9,10 +9,10 @@ import { TechIcon } from "@/components/ui/TechIcon";
 import { profile } from "@/data/profile";
 import { experience } from "@/data/experience";
 import { projects } from "@/data/projects";
-import { galleryPhotos } from "@/data/gallery";
 import { allSkills } from "@/data/skills";
 import { achievements } from "@/data/achievements";
 import { blogPosts } from "@/data/blog";
+import { getGalleryPhotos } from "@/lib/gallery";
 
 const formatDate = (iso: string) =>
   new Date(iso).toLocaleDateString("en-IN", {
@@ -21,8 +21,9 @@ const formatDate = (iso: string) =>
     year: "numeric",
   });
 
-export default function Home() {
+export default async function Home() {
   const featured = projects.filter((p) => p.featured).slice(0, 3);
+  const galleryPhotos = (await getGalleryPhotos()).slice(0, 6);
 
   return (
     <div className="mx-auto w-full max-w-3xl px-6 sm:px-8">

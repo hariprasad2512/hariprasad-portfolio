@@ -14,7 +14,7 @@
    * dots, selection color) follows. Defaults to a muted teal.
    */
   --accent: oklch(0.6 0.11 190);
-  --accent-foreground: oklch(0.98 0.01 190);
+  --accent-foreground: oklch(0.22 0.04 190);
 
   /* Soft, warm neutrals — no pure white, no pure black. */
   --background: oklch(0.985 0.004 95);
