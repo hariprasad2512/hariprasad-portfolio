@@ -28,6 +28,7 @@ export const experience: ExperienceItem[] = [
       
     ],
     tech: ["React", "JavaScript","Ant-D", "Test Driven Development", ],
+    logo: "/logos/helical.jpeg"
 
   },
   {
@@ -40,7 +41,7 @@ export const experience: ExperienceItem[] = [
       
     ],
     tech: ["HTML","CSS", "JavaScript","React","Python", "FastAPI","Django"],
-
+    logo: "/logos/rammina.jpeg"
   },
   {
     company: "Keystone Robotix",
@@ -53,6 +54,7 @@ export const experience: ExperienceItem[] = [
       "Managed concurrent MERN stack client projects, streamlined bug tracking and operations using Azure DevOps, and presented product demos.",
     ],
     tech: ["Flutter", "Python", "Framework7", "MERN", "Azure DevOps"],
+    logo:"/logos/keystone-robotix.jpeg"
   },
   {
     company: "Imaginate | AI+XR",
@@ -65,6 +67,7 @@ export const experience: ExperienceItem[] = [
       "Improved the user experience of VR-based flight-phobia treatments through usability testing and iterative interface refinements.",
     ],
     tech: ["Virtual Reality", "AI", "XR", ],
+    logo: "/logos/imaginate.jpeg"
   },
   {
     company: "Transvolt Mobility Pvt Ltd",
@@ -76,5 +79,6 @@ export const experience: ExperienceItem[] = [
       "Implemented digital workflows that reduced manual fleet logging effort by 70%, saving an estimated 20 hours per week."
     ],
     tech: ["Flutter", "REST API", "Django", "Firebase"],
+    logo: "/logos/transvolt.jpeg"
   },
 ];

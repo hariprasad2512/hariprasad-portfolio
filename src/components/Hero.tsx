@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { profile } from "@/data/profile";
 import SocialLinks from "./ui/SocialLinks";
@@ -53,12 +54,16 @@ export default function Hero() {
         </div>
 
         <Reveal delay={0.15}>
-          {/* Avatar placeholder — swap for a photo when ready. */}
           <div
-            className="flex h-28 w-28 shrink-0 items-center justify-center rounded-full border border-border bg-card font-mono text-2xl text-muted shadow-sm ring-1 ring-accent/20"
-            aria-hidden="true"
+            className="relative h-60 w-60 shrink-0 overflow-hidden rounded-full border border-border bg-card shadow-sm ring-1 ring-accent/20"
           >
-            HA
+            <Image
+              src="/profile.jpg"
+              alt={`${profile.name} portrait`}
+              fill
+              sizes="160px"
+              className="object-cover"
+            />
           </div>
         </Reveal>
       </div>

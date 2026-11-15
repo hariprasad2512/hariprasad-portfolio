@@ -28,7 +28,7 @@ export const projects: Project[] = [
     name: "Lisa",
     category: "AI · Full Stack",
     description:
-      "An AI-powered voice assistant combining speech recognition, language models, natural speech, and agentic web search.",
+      "An AI-powered voice assistant combining speech recognition and language models",
     stack: ["React", "FastAPI", "PostgreSQL", "AI"],
     href: "https://lisa-v2.vercel.app",
     githubUrl: "https://github.com/hariprasad2512/lisa-v2",
@@ -39,14 +39,14 @@ export const projects: Project[] = [
   
   {
     number: "02",
-    name: "Spently",
-    category: "Web · Personal Finance",
+    name: "Open Events",
+    category: "Web · Events",
     description:
-      "A personal finance tracker for securely recording, categorizing, filtering, and visualizing everyday expenses.",
-    githubUrl: "https://github.com/hariprasad2512/spently-app",
-    href: "https://spently-app.onrender.com/",
+      "City Events Aggregator using Bright Data Web Scraper",
+    githubUrl: "https://github.com/hariprasad2512/open-events",
+    href: "https://open-events.vercel.app/",
     stack: ["Python", "Django", "PostgreSQL", "Chart.js"],
-    linkLabel: "Explore Spently",
+    linkLabel: "Check OpenEvents",
     featured: true,
     image: "/projects/open-events.png"
   },
