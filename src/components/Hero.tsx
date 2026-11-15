@@ -31,7 +31,7 @@ export default function Hero() {
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <a
                 href={`mailto:${profile.email}`}
-                className="rounded-md bg-accent px-4 py-2 text-sm font-medium text-accent-foreground transition-opacity hover:opacity-90"
+                className="rounded-md bg-accent px-4 py-2 text-sm font-medium text-white transition-opacity hover:opacity-90"
               >
                 Get in touch
               </a>
@@ -45,7 +45,10 @@ export default function Hero() {
                 </span>
               </Link>
             </div>
-            <SocialLinks className="mt-6" />
+            <SocialLinks
+              className="mt-6"
+              socialIds={["github", "linkedin", "x", "playstore", "leetcode", "email"]}
+            />
           </Reveal>
         </div>
 

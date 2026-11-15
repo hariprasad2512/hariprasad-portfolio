@@ -2,7 +2,14 @@
  * Central profile data — the single place to edit identity information.
  */
 
-export type SocialId = "github" | "linkedin" | "x" | "medium" | "email";
+export type SocialId =
+  | "github"
+  | "linkedin"
+  | "x"
+  | "medium"
+  | "leetcode"
+  | "playstore"
+  | "email";
 
 export type Social = {
   id: SocialId;
@@ -60,6 +67,18 @@ export const profile = {
       label: "Medium",
       url: "https://medium.com/@hprasad887",
       handle: "medium.com/@hprasad887",
+    },
+    {
+      id: "leetcode",
+      label: "LeetCode",
+      url: "https://leetcode.com/hprasad887",
+      handle: "leetcode.com/hprasad887",
+    },
+    {
+      id: "playstore",
+      label: "Google Play",
+      url: "https://play.google.com/store/apps/dev?id=5568596102853249937",
+      handle: "Google Play developer page",
     },
     {
       id: "email",

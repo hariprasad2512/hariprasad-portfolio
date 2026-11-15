@@ -1,4 +1,10 @@
 import { Mail } from "lucide-react";
+import {
+  SiGoogleplay,
+  SiLeetcode,
+  SiMedium,
+  SiX,
+} from "@icons-pack/react-simple-icons";
 import { profile, type Social, type SocialId } from "@/data/profile";
 
 /**
@@ -21,23 +27,6 @@ function LinkedinMark() {
   );
 }
 
-/** Minimal letter marks for brands without a clean glyph. */
-function XMark() {
-  return (
-    <span aria-hidden="true" className="font-mono text-[13px] font-medium leading-none">
-      x
-    </span>
-  );
-}
-
-function MediumMark() {
-  return (
-    <span aria-hidden="true" className="text-[15px] font-semibold leading-none">
-      M
-    </span>
-  );
-}
-
 function SocialGlyph({ id }: { id: SocialId }) {
   switch (id) {
     case "github":
@@ -47,20 +36,30 @@ function SocialGlyph({ id }: { id: SocialId }) {
     case "email":
       return <Mail className="h-[18px] w-[18px]" aria-hidden="true" />;
     case "x":
-      return <XMark />;
+      return <SiX size={18} aria-hidden="true" />;
     case "medium":
-      return <MediumMark />;
+      return <SiMedium size={18} aria-hidden="true" />;
+    case "leetcode":
+      return <SiLeetcode size={18} aria-hidden="true" />;
+    case "playstore":
+      return <SiGoogleplay size={18} aria-hidden="true" />;
   }
 }
 
-const order: SocialId[] = ["github", "linkedin", "x", "medium", "email"];
+const order: SocialId[] = ["github", "linkedin", "x", "medium", "leetcode", "email"];
 
 /**
  * Row of small bordered square social links — used in the hero,
  * footer, and contact page.
  */
-export default function SocialLinks({ className = "" }: { className?: string }) {
-  const socials = order
+export default function SocialLinks({
+  className = "",
+  socialIds = order,
+}: {
+  className?: string;
+  socialIds?: SocialId[];
+}) {
+  const socials = socialIds
     .map((id) => profile.socials.find((s: Social) => s.id === id))
     .filter((s): s is Social => Boolean(s));
 

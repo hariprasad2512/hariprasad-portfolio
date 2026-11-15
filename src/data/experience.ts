@@ -19,6 +19,30 @@ export type ExperienceItem = {
 
 export const experience: ExperienceItem[] = [
   {
+    company: "Helical IT Solutions",
+    role: "Software Trainee",
+    period: "Oct 2026 - Present",
+    location: "Hyderabad, India",
+    highlights: [
+      "Junior Frontend Engineer working for Helical Insight, an open-source Business Intelligence Platform",
+      
+    ],
+    tech: ["React", "JavaScript","Ant-D", "Test Driven Development", ],
+
+  },
+  {
+    company: "Rammina Dev & Design",
+    role: "Full Stack Developer Intern",
+    period: "Aug 2026 - Oct 2026",
+    location: "Hyderabad, India",
+    highlights: [
+      "Worked on diverse Full Stack Applications, with a clear cut understanding on the underlying Architecture, and the end-to-end functionality.",
+      
+    ],
+    tech: ["HTML","CSS", "JavaScript","React","Python", "FastAPI","Django"],
+
+  },
+  {
     company: "Keystone Robotix",
     role: "Associate Software Engineer",
     period: "Sep 2025 – Jan 2026",
@@ -31,7 +55,7 @@ export const experience: ExperienceItem[] = [
     tech: ["Flutter", "Python", "Framework7", "MERN", "Azure DevOps"],
   },
   {
-    company: "Imaginate XR",
+    company: "Imaginate | AI+XR",
     role: "Development Intern",
     period: "Mar 2025 – Aug 2025",
     location: "Hyderabad, India",
@@ -40,6 +64,17 @@ export const experience: ExperienceItem[] = [
       "Deployed a conversational AI kiosk, managing AI context and API integrations for real-time healthcare information.",
       "Improved the user experience of VR-based flight-phobia treatments through usability testing and iterative interface refinements.",
     ],
-    tech: ["Backend systems", "AI integrations", "VR/UX"],
+    tech: ["Virtual Reality", "AI", "XR", ],
+  },
+  {
+    company: "Transvolt Mobility Pvt Ltd",
+    role: "SDE Intern",
+    period: "May 2024 – July 2024",
+    location: "Mumbai, India",
+    highlights: [
+      "Developed a EV Bus Fleet Management platform for managing daily operations across 50+ electric buses in Mira Bhaindar, Mumbai.",
+      "Implemented digital workflows that reduced manual fleet logging effort by 70%, saving an estimated 20 hours per week."
+    ],
+    tech: ["Flutter", "REST API", "Django", "Firebase"],
   },
 ];
