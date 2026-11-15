@@ -1,69 +1,65 @@
-
 import type { Project } from "@/data/projects";
 
-type ProjectCardProps = {
-  project: Project;
-};
+/**
+ * A single project card — used on the home-page teaser and the
+ * Projects page. The whole card links out when a URL exists,
+ * otherwise it's presented as static content.
+ */
+export default function ProjectCard({ project }: { project: Project }) {
+  const url = project.href ?? project.githubUrl;
+  const external = url?.startsWith("http");
 
-export default function ProjectCard({
-  project,
-}: ProjectCardProps) {
-  return (
-    <article className="rounded-2xl border border-slate-200 p-6 transition hover:border-slate-400">
-      <div className="flex items-center justify-between">
-        <span className="text-sm text-slate-400">
-          {project.number}
-        </span>
-        <span className="text-xs text-slate-500">
+  const body = (
+    <>
+      <div className="flex items-center justify-between gap-3">
+        <span className="font-mono text-xs tracking-wide text-muted">
           {project.category}
         </span>
+        {url ? (
+          <span
+            aria-hidden="true"
+            className="text-muted transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+          >
+            ↗
+          </span>
+        ) : null}
       </div>
-
-      <h3 className="mt-8 text-2xl font-semibold">
-        {project.name}
+      <h3 className="mt-2 font-medium tracking-tight">
+        <span className="font-mono text-sm text-muted">{project.number}</span>
+        <span className="ml-2">{project.name}</span>
       </h3>
-
-      <p className="mt-3 leading-7 text-slate-600">
+      <p className="mt-1.5 text-sm leading-relaxed text-muted">
         {project.description}
       </p>
-
-      <div className="mt-5 flex flex-wrap gap-2">
-        {project.stack.map((technology) => (
-          <span
-            key={technology}
-            className="rounded-full bg-slate-100 px-3 py-1 text-xs text-slate-700"
+      <ul className="mt-3 flex flex-wrap gap-1.5" aria-label="Technologies used">
+        {project.stack.map((tech) => (
+          <li
+            key={tech}
+            className="rounded border border-border px-1.5 py-0.5 font-mono text-[11px] text-muted"
           >
-            {technology}
-          </span>
+            {tech}
+          </li>
         ))}
-      </div>
-
-
-<div className="mt-6 flex flex-wrap items-center gap-4">
-  {project.href && (
-    <a
-      href={project.href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-700"
-    >
-      {project.linkLabel ?? "Live demo"}
-      <span aria-hidden="true">↗</span>
-    </a>
-  )}
-
-  {project.githubUrl && (
-    <a
-      href={project.githubUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="inline-flex items-center gap-2 text-sm font-medium text-slate-700 underline underline-offset-4 hover:text-black"
-    >
-      GitHub
-      <span aria-hidden="true">↗</span>
-    </a>
-  )}
-</div>
-    </article>
+      </ul>
+    </>
   );
+
+  const classes =
+    "group flex h-full flex-col rounded-xl border border-border bg-card p-4 transition-colors " +
+    (url
+      ? "hover:border-foreground/25"
+      : "cursor-default");
+
+  if (url) {
+    return (
+      <a
+        href={url}
+        {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+        className={classes}
+      >
+        {body}
+      </a>
+    );
+  }
+  return <div className={classes}>{body}</div>;
 }

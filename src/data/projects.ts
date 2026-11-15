@@ -1,3 +1,9 @@
+/**
+ * Projects. `featured: true` entries appear in the home-page teaser
+ * (first three featured ones are shown); the Projects page lists all.
+ * Optional `image` can point to a screenshot under /public.
+ */
+
 export type Project = {
   number: string;
   name: string;
@@ -7,6 +13,8 @@ export type Project = {
   href?: string;
   githubUrl?: string;
   linkLabel?: string;
+  image?: string;
+  featured?: boolean;
 };
 
 export const projects: Project[] = [
@@ -20,6 +28,7 @@ export const projects: Project[] = [
     href: "https://lisa-v2.vercel.app",
     githubUrl: "https://github.com/hariprasad2512/lisa-v2",
     linkLabel: "Live demo",
+    featured: true,
   },
   {
     number: "02",
@@ -30,6 +39,7 @@ export const projects: Project[] = [
     href: "https://spently-app.onrender.com/",
     stack: ["Python", "Django", "PostgreSQL", "Chart.js"],
     linkLabel: "Explore Spently",
+    featured: true,
   },
   {
     number: "03",
@@ -38,5 +48,6 @@ export const projects: Project[] = [
     description:
       "An offline-first public transport app designed to help commuters navigate Telangana bus services.",
     stack: ["Flutter", "Dart"],
+    featured: true,
   },
 ];

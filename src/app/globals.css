@@ -1,26 +1,89 @@
 @import "tailwindcss";
 
+/* Dark mode is driven by a `.dark` class on <html> (set by ThemeProvider). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ------------------------------------------------------------------ */
+/* Design tokens                                                       */
+/* ------------------------------------------------------------------ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /*
+   * Accent — the single place to re-theme the whole site.
+   * Change `--accent` (and optionally --accent-foreground) and every
+   * accent-colored element (nav dot, eyebrow labels, buttons, timeline
+   * dots, selection color) follows. Defaults to a muted teal.
+   */
+  --accent: oklch(0.6 0.11 190);
+  --accent-foreground: oklch(0.98 0.01 190);
+
+  /* Soft, warm neutrals — no pure white, no pure black. */
+  --background: oklch(0.985 0.004 95);
+  --card: oklch(1 0 0);
+  --foreground: oklch(0.27 0.012 95);
+  --muted: oklch(0.52 0.014 95);
+  --border: oklch(0.9 0.007 95);
+}
+
+.dark {
+  /* Slightly lifted accent keeps contrast on the dark surface. */
+  --accent: oklch(0.76 0.1 190);
+  --accent-foreground: oklch(0.18 0.03 190);
+
+  --background: oklch(0.17 0.005 95);
+  --card: oklch(0.21 0.006 95);
+  --foreground: oklch(0.93 0.005 95);
+  --muted: oklch(0.67 0.008 95);
+  --border: oklch(0.29 0.008 95);
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-card: var(--card);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ------------------------------------------------------------------ */
+/* Base                                                                */
+/* ------------------------------------------------------------------ */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--accent) 22%, transparent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
