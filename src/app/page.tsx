@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Hero from "@/components/Hero";
 import ProjectCard from "@/components/ProjectCard";
+import ExperienceItem from "@/components/ExperienceItem";
 import Section from "@/components/ui/Section";
 import Reveal from "@/components/ui/Reveal";
 import { profile } from "@/data/profile";
@@ -57,18 +58,7 @@ export default function Home() {
             <li key={item.company}>
               <Reveal delay={index * 0.05}>
                 <article className="rounded-xl border border-border bg-card p-4 sm:p-5">
-                  <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                    <h3 className="font-medium tracking-tight">
-                      {item.role}
-                      <span className="text-muted"> · {item.company}</span>
-                    </h3>
-                    <span className="font-mono text-xs text-muted">
-                      {item.period}
-                    </span>
-                  </div>
-                  <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-muted">
-                    {item.highlights[0]}
-                  </p>
+                  <ExperienceItem item={item} compact />
                 </article>
               </Reveal>
             </li>
@@ -84,8 +74,8 @@ export default function Home() {
         moreHref="/projects"
       >
         <ul className="grid gap-4 sm:grid-cols-2">
-          {featured.map((project, index) => (
-            <li key={project.name} className={index === 2 ? "sm:col-span-2" : undefined}>
+          {featured.slice(0, 2).map((project, index) => (
+            <li key={project.name}>
               <Reveal delay={index * 0.05}>
                 <ProjectCard project={project} />
               </Reveal>

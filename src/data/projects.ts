@@ -1,7 +1,11 @@
 /**
  * Projects. `featured: true` entries appear in the home-page teaser
- * (first three featured ones are shown); the Projects page lists all.
- * Optional `image` can point to a screenshot under /public.
+ * (first two featured ones are shown); the Projects page lists all.
+ *
+ * Optional fields:
+ *   - `image`: path (under /public) to a screenshot — until then the
+ *     card shows a clearly marked placeholder.
+ *   - `date`: display string, e.g. "Aug 2026".
  */
 
 export type Project = {
@@ -14,6 +18,7 @@ export type Project = {
   githubUrl?: string;
   linkLabel?: string;
   image?: string;
+  date?: string;
   featured?: boolean;
 };
 
