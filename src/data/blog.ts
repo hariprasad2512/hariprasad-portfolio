@@ -12,6 +12,10 @@ export type BlogPost = {
   description: string;
   date: string; // ISO date (YYYY-MM-DD)
   url: string;
+  /** Optional display string, e.g. "6 min read". */
+  readTime?: string;
+  /** Optional cover image path (under /public). */
+  image?: string;
 };
 
 export const mediumProfileUrl = profile.socials.find((s) => s.id === "medium")

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Container from "@/components/ui/Container";
 import PageHeader from "@/components/ui/PageHeader";
 import Reveal from "@/components/ui/Reveal";
+import { TechIcon } from "@/components/ui/TechIcon";
 import { skillCategories } from "@/data/skills";
 
 export const metadata: Metadata = {
@@ -30,8 +31,9 @@ export default function SkillsPage() {
                 {category.skills.map((skill) => (
                   <li
                     key={skill}
-                    className="rounded-md border border-border bg-card px-2.5 py-1 text-sm text-foreground/90 transition-colors hover:border-foreground/25"
+                    className="flex items-center gap-1.5 rounded-md border border-border bg-card px-2.5 py-1 text-sm text-foreground/90 transition-colors hover:border-foreground/25"
                   >
+                    <TechIcon name={skill} />
                     {skill}
                   </li>
                 ))}

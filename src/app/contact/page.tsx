@@ -3,6 +3,7 @@ import { Mail } from "lucide-react";
 import Container from "@/components/ui/Container";
 import PageHeader from "@/components/ui/PageHeader";
 import Reveal from "@/components/ui/Reveal";
+import CopyEmailButton from "@/components/ui/CopyEmailButton";
 import SocialLinks from "@/components/ui/SocialLinks";
 import { profile } from "@/data/profile";
 
@@ -22,20 +23,28 @@ export default function ContactPage() {
 
       <div className="pb-8">
         <Reveal>
-          <a
-            href={`mailto:${profile.email}`}
-            className="group flex items-center justify-between gap-4 rounded-xl border border-border bg-card p-5 transition-colors hover:border-foreground/25"
-          >
-            <div>
-              <span className="font-mono text-xs uppercase tracking-widest text-accent">
-                email
-              </span>
-              <p className="mt-1 font-medium tracking-tight">{profile.email}</p>
+          <div className="rounded-xl border border-border bg-card p-5">
+            <div className="flex flex-wrap items-center justify-between gap-4">
+              <div className="min-w-0">
+                <span className="font-mono text-xs uppercase tracking-widest text-accent">
+                  email
+                </span>
+                <p className="mt-1 truncate font-medium tracking-tight">
+                  {profile.email}
+                </p>
+              </div>
+              <div className="flex items-center gap-2.5">
+                <a
+                  href={`mailto:${profile.email}`}
+                  className="inline-flex items-center gap-2 rounded-md bg-accent px-4 py-2 text-sm font-medium text-accent-foreground transition-opacity hover:opacity-90"
+                >
+                  <Mail className="h-4 w-4" aria-hidden="true" />
+                  Write me
+                </a>
+                <CopyEmailButton email={profile.email} />
+              </div>
             </div>
-            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent text-accent-foreground transition-opacity group-hover:opacity-90">
-              <Mail className="h-4 w-4" aria-hidden="true" />
-            </span>
-          </a>
+          </div>
         </Reveal>
 
         <Reveal delay={0.1}>
@@ -43,6 +52,12 @@ export default function ContactPage() {
             elsewhere
           </p>
           <SocialLinks className="mt-3" />
+        </Reveal>
+
+        <Reveal delay={0.15}>
+          <p className="mt-10 font-mono text-xs text-muted">
+            {profile.location} · {profile.availability}
+          </p>
         </Reveal>
       </div>
     </Container>

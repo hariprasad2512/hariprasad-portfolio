@@ -5,6 +5,7 @@ import ProjectCard from "@/components/ProjectCard";
 import ExperienceItem from "@/components/ExperienceItem";
 import Section from "@/components/ui/Section";
 import Reveal from "@/components/ui/Reveal";
+import { TechIcon } from "@/components/ui/TechIcon";
 import { profile } from "@/data/profile";
 import { experience } from "@/data/experience";
 import { projects } from "@/data/projects";
@@ -128,8 +129,9 @@ export default function Home() {
             {allSkills.slice(0, 12).map((skill) => (
               <li
                 key={skill}
-                className="rounded-md border border-border bg-card px-2.5 py-1 text-sm text-muted transition-colors hover:border-foreground/25 hover:text-foreground"
+                className="flex items-center gap-1.5 rounded-md border border-border bg-card px-2.5 py-1 text-sm text-muted transition-colors hover:border-foreground/25 hover:text-foreground"
               >
+                <TechIcon name={skill} />
                 {skill}
               </li>
             ))}
