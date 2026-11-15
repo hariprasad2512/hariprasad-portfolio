@@ -1,34 +1,63 @@
+import Link from "next/link";
+import { profile } from "@/data/profile";
+import SocialLinks from "./ui/SocialLinks";
+import Reveal from "./ui/Reveal";
 
 export default function Hero() {
   return (
-    <section className="py-24 sm:py-32">
-      <p className="mb-5 text-sm font-medium uppercase tracking-[0.2em] text-slate-500">
-        Full Stack Developer · Hyderabad, India
-      </p>
+    <section className="py-16 sm:py-24">
+      <div className="flex flex-col-reverse items-start justify-between gap-10 sm:flex-row sm:items-center">
+        <div className="max-w-xl">
+          <Reveal>
+            <p className="font-mono text-xs tracking-wide text-muted">
+              {profile.location} · {profile.availability}
+            </p>
+            <h1 className="mt-4 text-4xl font-semibold tracking-tight sm:text-5xl">
+              {profile.name}
+              <span className="text-accent" aria-hidden="true">
+                .
+              </span>
+            </h1>
+            <p className="mt-3 font-mono text-sm text-muted">{profile.role}</p>
+          </Reveal>
 
-      <h1 className="max-w-3xl text-5xl font-semibold leading-tight tracking-tight sm:text-7xl">
-        Building useful products with code.
-      </h1>
+          <Reveal delay={0.1}>
+            <p className="mt-6 max-w-prose leading-relaxed text-muted">
+              {profile.intro}
+            </p>
+          </Reveal>
 
-      <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-600">
-        I&apos;m Hariprasad, a software developer building web and
-        mobile applications, backend systems, and AI-powered products.
-        I enjoy turning ideas into practical software.
-      </p>
+          <Reveal delay={0.2}>
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <a
+                href={`mailto:${profile.email}`}
+                className="rounded-md bg-accent px-4 py-2 text-sm font-medium text-accent-foreground transition-opacity hover:opacity-90"
+              >
+                Get in touch
+              </a>
+              <Link
+                href="/projects"
+                className="rounded-md border border-border px-4 py-2 text-sm text-foreground/80 transition-colors hover:border-foreground/25 hover:text-foreground"
+              >
+                See my work
+                <span aria-hidden="true" className="ml-1">
+                  →
+                </span>
+              </Link>
+            </div>
+            <SocialLinks className="mt-6" />
+          </Reveal>
+        </div>
 
-      <div className="mt-9 flex flex-wrap gap-4">
-        <a
-          href="#work"
-          className="rounded-full bg-slate-900 px-6 py-3 text-sm font-medium text-white hover:bg-slate-700"
-        >
-          Explore my work ↓
-        </a>
-        <a
-          href="#contact"
-          className="rounded-full border border-slate-300 px-6 py-3 text-sm font-medium hover:bg-slate-100"
-        >
-          Get in touch ↗
-        </a>
+        <Reveal delay={0.15}>
+          {/* Avatar placeholder — swap for a photo when ready. */}
+          <div
+            className="flex h-28 w-28 shrink-0 items-center justify-center rounded-full border border-border bg-card font-mono text-2xl text-muted shadow-sm ring-1 ring-accent/20"
+            aria-hidden="true"
+          >
+            HA
+          </div>
+        </Reveal>
       </div>
     </section>
   );

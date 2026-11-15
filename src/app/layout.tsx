@@ -1,7 +1,10 @@
-
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "@/components/theme/ThemeProvider";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import { profile } from "@/data/profile";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,16 +17,45 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Hariprasad Anuganti | Full Stack Developer",
-  description:
-    "Portfolio of Hariprasad Anuganti, a Full Stack Developer building web applications, mobile products, backend APIs, and AI-powered software.",
+  metadataBase: new URL(profile.siteUrl),
+  title: {
+    default: `${profile.name} — ${profile.role}`,
+    template: `%s — ${profile.name}`,
+  },
+  description: profile.description,
+  alternates: { canonical: "/" },
   openGraph: {
-    title: "Hariprasad Anuganti | Full Stack Developer",
-    description:
-      "Explore my software engineering experience and projects in full-stack development, mobile applications, and AI.",
+    title: `${profile.name} — ${profile.role}`,
+    description: profile.description,
+    url: "/",
+    siteName: profile.name,
     type: "website",
   },
+  twitter: {
+    card: "summary",
+    title: `${profile.name} — ${profile.role}`,
+    description: profile.description,
+  },
 };
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#faf9f7" },
+    { media: "(prefers-color-scheme: dark)", color: "#1a1918" },
+  ],
+};
+
+/**
+ * Applied before hydration so a stored dark preference paints on the
+ * first frame — no theme flash. Light remains the default.
+ */
+const themeInitScript = `
+try {
+  if (localStorage.getItem("theme") === "dark") {
+    document.documentElement.classList.add("dark");
+  }
+} catch {}
+`;
 
 export default function RootLayout({
   children,
@@ -34,9 +66,15 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
-      <body className="flex min-h-full flex-col">
-        {children}
+      <body className="flex min-h-dvh flex-col">
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        <ThemeProvider>
+          <Navbar />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

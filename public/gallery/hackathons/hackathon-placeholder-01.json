@@ -1,0 +1,7 @@
+{
+  "title": "Sidecar metadata example",
+  "caption": "Any photo can have a .json sidecar next to it with title, caption, event, date, and location — delete this file to see the filename-based defaults.",
+  "event": "Sample hackathon",
+  "date": "2026-01-01",
+  "location": "Hyderabad, India"
+}
