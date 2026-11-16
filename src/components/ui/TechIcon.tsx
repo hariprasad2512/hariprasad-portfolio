@@ -20,6 +20,9 @@ import {
   SiTailwindcss,
   SiTypescript,
   SiVercel,
+  SiSqlite,
+  SiReactHex,
+  SiReactbootstrap
 } from "@icons-pack/react-simple-icons";
 
 /**
@@ -42,11 +45,14 @@ const techIcons: Record<string, ComponentType<SVGProps<SVGSVGElement> & { size?:
   "Tailwind CSS": SiTailwindcss,
   "Node.js": SiNodedotjs,
   "Chart.js": SiChartdotjs,
+  "React Native" : SiReact,
   Git: SiGit,
   "GitHub Actions": SiGithubactions,
   Vercel: SiVercel,
   Render: SiRender,
   Framework7: SiFramework7,
+  SQLite3: SiSqlite,
+  
 };
 
 export function TechIcon({ name }: { name: string }) {
