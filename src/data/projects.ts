@@ -28,32 +28,71 @@ export const projects: Project[] = [
     name: "Lisa",
     category: "AI · Full Stack",
     description:
-      "An AI-powered voice assistant combining speech recognition and language models",
+      "A modern, AI-powered full-stack Voice Assistant.",
     stack: ["React", "FastAPI", "PostgreSQL", "AI"],
     href: "https://lisa-v2.vercel.app",
     githubUrl: "https://github.com/hariprasad2512/lisa-v2",
-    linkLabel: "Live demo",
+    linkLabel: "Try Lisa",
     featured: true,
     image: "/projects/lisa.png"
   },
-  
   {
     number: "02",
+    name: "Clarity",
+    category: "Cross Platform",
+    description:
+      "Open-Source Apple Reminders Alternative, runs on macOS, Windows and Android.",
+    githubUrl: "https://github.com/hariprasad2512/clarity_flutter",
+    href: "https://hariprasad2512.github.io/clarity-app/",
+    stack: ["Flutter", "Supabase", "PostgreSQL"],
+    linkLabel: "Try Clarity Now!",
+    featured: true,
+    image: "/projects/clarity.png"
+  },
+  
+  {
+    number: "03",
+    name: "nextClass",
+    category: "Mobile",
+    description:
+      "An offline-first public transport app designed to help commuters navigate Telangana bus services.",
+    stack: ["Flutter", "Dart", "Firebase"],
+    githubUrl: "https://github.com/hariprasad2512/next_class",
+    href : "https://play.google.com/store/apps/details?id=com.harry.next_class",
+    linkLabel: "Download Now",
+    featured: true,
+    image: "/projects/nextClass.png"
+  },
+  {
+    number: "04",
+    name: "Maargam",
+    category: "Mobile",
+    description:
+      "An offline-first public transport app designed to help commuters navigate Telangana bus services.",
+    stack: ["React Native", "Python", "SQLite"],
+    githubUrl: "https://github.com/hariprasad2512/margam-ts-bus-guide",
+    href: "https://play.google.com/store/apps/details?id=com.hpsdstudio.maargam",
+    featured: true,
+    linkLabel: "Download Now",
+    image: "/projects/maargam.png"
+  },
+
+  {
+    number: "05",
     name: "Open Events",
-    category: "Web · Events",
+    category: "Web",
     description:
       "City Events Aggregator using Bright Data Web Scraper",
     githubUrl: "https://github.com/hariprasad2512/open-events",
     href: "https://open-events.vercel.app/",
     stack: ["Python", "Django", "PostgreSQL", "Chart.js"],
     linkLabel: "Check OpenEvents",
-    featured: true,
     image: "/projects/open-events.png"
   },
   {
-    number: "03",
+    number: "06",
     name: "Spently",
-    category: "Web · Personal Finance",
+    category: "Web",
     description:
       "A personal finance tracker for securely recording, categorizing, filtering, and visualizing everyday expenses.",
     githubUrl: "https://github.com/hariprasad2512/spently-app",
@@ -63,13 +102,7 @@ export const projects: Project[] = [
     featured: true,
     image: "/projects/spently.png"
   },
-  {
-    number: "04",
-    name: "Maargam",
-    category: "Mobile · Public Transport",
-    description:
-      "An offline-first public transport app designed to help commuters navigate Telangana bus services.",
-    stack: ["Flutter", "Dart"],
-    featured: true,
-  },
+
+
+
 ];
