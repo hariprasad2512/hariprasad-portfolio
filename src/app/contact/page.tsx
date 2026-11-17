@@ -4,13 +4,13 @@ import Container from "@/components/ui/Container";
 import PageHeader from "@/components/ui/PageHeader";
 import Reveal from "@/components/ui/Reveal";
 import CopyEmailButton from "@/components/ui/CopyEmailButton";
-import SocialLinks from "@/components/ui/SocialLinks";
+import SocialRows from "@/components/ui/SocialRows";
 import { profile } from "@/data/profile";
 
 export const metadata: Metadata = {
   title: "Contact",
   alternates: { canonical: "/contact" },
-  description: `Get in touch with ${profile.name} — email, GitHub, LinkedIn, X, Medium, and LeetCode.`,
+  description: `Get in touch with ${profile.name} — email, GitHub, LinkedIn, X, Medium, LeetCode, and Google Play.`,
 };
 
 export default function ContactPage() {
@@ -52,7 +52,7 @@ export default function ContactPage() {
           <p className="mt-8 font-mono text-xs uppercase tracking-widest text-muted">
             elsewhere
           </p>
-          <SocialLinks className="mt-3" />
+          <SocialRows className="mt-3" />
         </Reveal>
 
         <Reveal delay={0.15}>

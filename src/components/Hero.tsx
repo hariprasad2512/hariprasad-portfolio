@@ -3,6 +3,7 @@ import Link from "next/link";
 import { profile } from "@/data/profile";
 import SocialLinks from "./ui/SocialLinks";
 import Reveal from "./ui/Reveal";
+import ContactDrawer from "./ContactDrawer";
 
 export default function Hero() {
   return (
@@ -30,12 +31,7 @@ export default function Hero() {
 
           <Reveal delay={0.2}>
             <div className="mt-8 flex flex-wrap items-center gap-3">
-              <a
-                href={`mailto:${profile.email}`}
-                className="rounded-md bg-accent px-4 py-2 text-sm font-medium text-white transition-opacity hover:opacity-90"
-              >
-                Get in touch
-              </a>
+              <ContactDrawer />
               <Link
                 href="/projects"
                 className="rounded-md border border-border px-4 py-2 text-sm text-foreground/80 transition-colors hover:border-foreground/25 hover:text-foreground"

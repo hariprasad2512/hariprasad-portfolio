@@ -27,7 +27,7 @@ function LinkedinMark() {
   );
 }
 
-function SocialGlyph({ id }: { id: SocialId }) {
+export function SocialGlyph({ id }: { id: SocialId }) {
   switch (id) {
     case "github":
       return <GithubMark />;

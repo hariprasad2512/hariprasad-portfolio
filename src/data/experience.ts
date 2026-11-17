@@ -51,7 +51,6 @@ export const experience: ExperienceItem[] = [
     highlights: [
       "Engineered the Unibasket mobile app using Flutter and a Python backend for daily deliveries from verified local vendors.",
       "Contributed to launching Unimatix.io, a cross-platform B2B project management tool using Framework7, Flutter, and CI/CD tools.",
-      "Managed concurrent MERN stack client projects, streamlined bug tracking and operations using Azure DevOps, and presented product demos.",
     ],
     tech: ["Flutter", "Python", "Framework7", "MERN", "Azure DevOps"],
     logo:"/logos/keystone-robotix.jpeg"
@@ -62,7 +61,6 @@ export const experience: ExperienceItem[] = [
     period: "Mar 2025 – Aug 2025",
     location: "Hyderabad, India",
     highlights: [
-      "Developed and maintained backend-driven systems for Manaha Clinic to support appointment scheduling and patient workflows.",
       "Deployed a conversational AI kiosk, managing AI context and API integrations for real-time healthcare information.",
       "Improved the user experience of VR-based flight-phobia treatments through usability testing and iterative interface refinements.",
     ],
