@@ -84,7 +84,7 @@ Edit `src/data/projects.ts`:
 {
   number: "04",
   name: "Project name",
-  category: "Web · Productivity",        // the chip shown on the screenshot
+  category: "Web",                       // filter chip + colored tag on the card
   description: "One or two sentences.",
   stack: ["React", "FastAPI"],           // badges — brand icons render automatically
   href: "https://live-demo.example",     // optional — enables the "Live" button
@@ -97,6 +97,12 @@ Edit `src/data/projects.ts`:
 
 Put screenshots in `public/projects/`. Cards without links simply don't render
 Source/Live buttons.
+
+The category doubles as a filter on `/projects`: chips are generated from the
+categories already present in `projects.ts`, and each category has a designated
+color in `categoryStyles` (sky = Web, emerald = Mobile, violet = AI, amber =
+Misc). The active filter lives in the URL (e.g. `/projects?category=web`), so
+filtered views are shareable. Categories without a color entry render neutral.
 
 ### 4. Skills
 

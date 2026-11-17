@@ -15,6 +15,9 @@ import { TechIcon } from "./ui/TechIcon";
  * buttons. Buttons only render when a URL exists.
  */
 export default function ProjectCard({ project }: { project: Project }) {
+  const { border: chipBorder, text: chipText } =
+    categoryStyles[project.category] ?? fallbackCategoryStyle;
+
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card transition-colors hover:border-foreground/25">
       {/* Screenshot / placeholder */}
@@ -43,7 +46,9 @@ export default function ProjectCard({ project }: { project: Project }) {
             </p>
           </div>
         )}
-        <span className="absolute bottom-3 left-3 rounded-md border border-border bg-background/85 px-2 py-1 font-mono text-[11px] tracking-wide text-foreground/90 backdrop-blur-sm">
+        <span
+          className={`absolute bottom-3 left-3 rounded-md border bg-background/85 px-2 py-1 font-mono text-[11px] tracking-wide backdrop-blur-sm ${chipBorder} ${chipText}`}
+        >
           {project.category}
         </span>
       </div>
