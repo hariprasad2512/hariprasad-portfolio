@@ -35,7 +35,7 @@ export const experience: ExperienceItem[] = [
     company: "Rammina Dev & Design",
     role: "Full Stack Developer Intern",
     period: "Aug 2026 - Oct 2026",
-    location: "Hyderabad, India",
+    location: "Remote",
     highlights: [
       "Worked on diverse Full Stack Applications, with a clear cut understanding on the underlying Architecture, and the end-to-end functionality.",
       

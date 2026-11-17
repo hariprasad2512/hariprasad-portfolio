@@ -9,7 +9,6 @@ import { profile } from "@/data/profile";
 import { experience } from "@/data/experience";
 import { projects } from "@/data/projects";
 import { allSkills } from "@/data/skills";
-import { achievements } from "@/data/achievements";
 import { blogPosts } from "@/data/blog";
 import { getGalleryPhotos } from "@/lib/gallery";
 
@@ -111,34 +110,6 @@ export default async function Home() {
             ))}
           </ul>
         </Reveal>
-      </Section>
-
-      {/* Achievements — compact list. */}
-      <Section
-        id="achievements"
-        eyebrow="achievements"
-        title="Highlights"
-        moreHref="/achievements"
-      >
-        <ol className="space-y-4">
-          {achievements.slice(0, 2).map((achievement, index) => (
-            <li key={achievement.title}>
-              <Reveal delay={index * 0.05}>
-                <article className="rounded-xl border border-border bg-card p-4 sm:p-5">
-                  <span className="font-mono text-xs uppercase tracking-wide text-accent">
-                    {achievement.category}
-                  </span>
-                  <h3 className="mt-1.5 font-medium tracking-tight">
-                    {achievement.title}
-                  </h3>
-                  <p className="mt-1 text-sm leading-relaxed text-muted">
-                    {achievement.description}
-                  </p>
-                </article>
-              </Reveal>
-            </li>
-          ))}
-        </ol>
       </Section>
 
       {/* Blog — latest posts. */}

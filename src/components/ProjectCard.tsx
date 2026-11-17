@@ -1,7 +1,11 @@
 import Image from "next/image";
 import { ArrowUpRight, ImageOff } from "lucide-react";
 import { SiGithub } from "@icons-pack/react-simple-icons";
-import type { Project } from "@/data/projects";
+import {
+  categoryStyles,
+  fallbackCategoryStyle,
+  type Project,
+} from "@/data/projects";
 import { TechIcon } from "./ui/TechIcon";
 
 /**

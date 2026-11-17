@@ -22,7 +22,6 @@ npm run lint       # eslint
 | Projects | `src/data/projects.ts` |
 | Photos | `public/gallery/` (auto-discovered) + `src/data/gallery.ts` |
 | Skills | `src/data/skills.ts` |
-| Achievements | `src/data/achievements.ts` |
 | Blog posts | `src/data/blog.ts` |
 | Accent color / theme tokens | `src/app/globals.css` |
 
@@ -36,7 +35,7 @@ Deploying to any host (e.g. Vercel) rebuilds the site on every `git push`, so ne
 
 1. Drop an image (`jpg`, `png`, `webp`, `avif`, `gif`) into `public/gallery/<category>/`.
    Folders are the categories: `hackathons`, `college`, `conferences`, `workplace`,
-   `achievements`, `travel`, `personal`.
+   `travel`, `personal`.
 2. Done. At build time the folder is scanned automatically — the filename becomes
    the title and image dimensions are read for you.
 
@@ -105,21 +104,7 @@ Edit `src/data/skills.ts`. Skills are grouped by category; each category is a
 block on `/skills`, and the first ~12 appear on the home page. Brand icons
 render automatically for well-known technologies (React, Python, Flutter…).
 
-### 5. Achievements
-
-Edit `src/data/achievements.ts` — replace the two placeholder entries:
-
-```ts
-{
-  title: "Winner — Build What Moves India",
-  description: "One or two sentences.",
-  category: "Hackathon",                 // Hackathon | Certification | Academic | Publication | Other
-  year: "2026",
-  link: "https://devpost.com/…",         // optional
-}
-```
-
-### 6. Blog posts
+### 5. Blog posts
 
 Edit `src/data/blog.ts`. Posts link out to Medium:
 
@@ -137,7 +122,7 @@ Edit `src/data/blog.ts`. Posts link out to Medium:
 Update `mediumProfileUrl` (currently a placeholder in `profile.ts`'s socials)
 with your real Medium profile.
 
-### 7. Profile, socials & site URL
+### 6. Profile, socials & site URL
 
 Edit `src/data/profile.ts`:
 
@@ -166,7 +151,7 @@ Edit `src/data/profile.ts`:
 ```
 src/
   app/            # routes: /, /experience, /projects, /gallery, /skills,
-                  #          /achievements, /blog, /contact + SEO (robots, sitemap, OG)
+                  #          /blog, /contact + SEO (robots, sitemap, OG)
   components/     # Navbar, Hero, cards, Gallery/ (filters/grid/lightbox),
                   #   theme/ (ThemeProvider, toggle), ui/ (shared primitives)
   data/           # ← all editable content lives here

@@ -21,7 +21,6 @@ export type GalleryCategoryId =
   | "college"
   | "conferences"
   | "workplace"
-  | "achievements"
   | "travel"
   | "personal";
 
@@ -51,7 +50,6 @@ export const galleryCategories: { id: GalleryCategoryId; label: string }[] = [
   { id: "college", label: "College Events" },
   { id: "conferences", label: "Conferences & Meetups" },
   { id: "workplace", label: "Workplace & Team" },
-  { id: "achievements", label: "Achievements" },
   { id: "travel", label: "Travel" },
   { id: "personal", label: "Personal Moments" },
 ];

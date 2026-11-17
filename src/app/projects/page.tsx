@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import Container from "@/components/ui/Container";
 import PageHeader from "@/components/ui/PageHeader";
-import ProjectCard from "@/components/ProjectCard";
-import Reveal from "@/components/ui/Reveal";
+import ProjectsGrid from "@/components/ProjectsGrid";
 import { projects } from "@/data/projects";
 
 export const metadata: Metadata = {
@@ -21,15 +21,9 @@ export default function ProjectsPage() {
         description="A selection of products and experiments across web, mobile, and AI."
       />
 
-      <ul className="grid gap-4 pb-8 sm:grid-cols-2">
-        {projects.map((project, index) => (
-          <li key={project.name} className={index === projects.length - 1 && projects.length % 2 === 1 ? "sm:col-span-2" : undefined}>
-            <Reveal delay={(index % 2) * 0.05}>
-              <ProjectCard project={project} />
-            </Reveal>
-          </li>
-        ))}
-      </ul>
+      <Suspense fallback={null}>
+        <ProjectsGrid projects={projects} />
+      </Suspense>
     </Container>
   );
 }

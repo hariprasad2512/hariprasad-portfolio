@@ -29,7 +29,7 @@ export const profile = {
   // TODO: replace with your real domain — used for canonical URLs and OG images.
   siteUrl: "https://hariprasad.tech",
   description:
-    "Hariprasad Anuganti is a Software Engineer from Hyderabad, India, building web, mobile, and AI-powered Solutions.",
+    "Hariprasad Anuganti — Software Engineer from Hyderabad, passionate about problem-solving and building web, mobile, and AI-powered applications.",
   intro:
     "I enjoy untangling complex problems, exploring ideas, and turning them into applications that people love to use. ",
   about: [
@@ -95,6 +95,5 @@ export const navLinks = [
   { href: "/projects", label: "projects" },
   { href: "/gallery", label: "gallery" },
   { href: "/skills", label: "skills" },
-  { href: "/achievements", label: "achievements" },
   { href: "/blog", label: "blog" },
 ] as const;

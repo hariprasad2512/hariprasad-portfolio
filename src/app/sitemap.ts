@@ -7,7 +7,6 @@ const routes = [
   "/projects",
   "/gallery",
   "/skills",
-  "/achievements",
   "/blog",
   "/contact",
 ];
