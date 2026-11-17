@@ -1,26 +1,28 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <style>
-    .glyph { fill: #2e2b28; }
-    .slash { fill: #25919a; }
-    @media (prefers-color-scheme: dark) {
-      .glyph { fill: #f4f3f0; }
-    }
-  </style>
-  <text
-    x="32"
-    y="25.5"
-    text-anchor="middle"
-    font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace"
-    font-weight="700"
-    font-size="30"
-  ><tspan class="glyph">&lt;</tspan><tspan class="slash" font-size="27">/</tspan></text>
-  <text
-    x="32"
-    y="55"
-    text-anchor="middle"
-    font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace"
-    font-weight="700"
-    font-size="30"
-    class="glyph"
-  >hp&gt;</text>
+  <defs>
+    <linearGradient id="tile" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#23b5a9"/>
+      <stop offset="1" stop-color="#0c8a80"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#tile)"/>
+  <g transform="translate(3.2 3.2) scale(0.9)">
+    <text
+      x="32"
+      y="25.5"
+      text-anchor="middle"
+      font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace"
+      font-weight="700"
+      font-size="30"
+    ><tspan fill="#f4f3f0">&lt;</tspan><tspan fill="#b5efe7" font-size="27">/</tspan></text>
+    <text
+      x="32"
+      y="55"
+      text-anchor="middle"
+      font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace"
+      font-weight="700"
+      font-size="30"
+      fill="#f4f3f0"
+    >hp&gt;</text>
+  </g>
 </svg>

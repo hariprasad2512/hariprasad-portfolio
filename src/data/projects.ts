@@ -55,7 +55,7 @@ export const projects: Project[] = [
     name: "nextClass",
     category: "Mobile",
     description:
-      "Personalised Timetable App for College Students, for IIIT Sricity",
+      "Personalised Timetable App for College Students, for IIIT Sricity.",
     stack: ["Flutter", "Dart", "Firebase"],
     githubUrl: "https://github.com/hariprasad2512/next_class",
     href : "https://play.google.com/store/apps/details?id=com.harry.next_class",
@@ -68,7 +68,7 @@ export const projects: Project[] = [
     name: "Maargam",
     category: "Mobile",
     description:
-      "An offline-first TGSRTC Bus Guide App",
+      "An offline-first TGSRTC Bus Guide App for Hyderabad City Routes.",
     stack: ["React Native", "Python", "SQLite3"],
     githubUrl: "https://github.com/hariprasad2512/margam-ts-bus-guide",
     href: "https://play.google.com/store/apps/details?id=com.hpsdstudio.maargam",
@@ -102,6 +102,8 @@ export const projects: Project[] = [
     featured: true,
     image: "/projects/spently.png"
   },
+
+  
 
 
 

@@ -1,8 +1,7 @@
-import Image from "next/image";
-import Link from "next/link";
 import Hero from "@/components/Hero";
 import ProjectCard from "@/components/ProjectCard";
 import ExperienceItem from "@/components/ExperienceItem";
+import HomeGallery from "@/components/Gallery/HomeGallery";
 import Section from "@/components/ui/Section";
 import Reveal from "@/components/ui/Reveal";
 import { TechIcon } from "@/components/ui/TechIcon";
@@ -79,7 +78,7 @@ export default async function Home() {
         </ul>
       </Section>
 
-      {/* Gallery — a small strip; the full grid lives on /gallery. */}
+      {/* Gallery — bento preview; the full grid lives on /gallery. */}
       <Section
         id="gallery"
         eyebrow="gallery"
@@ -88,26 +87,7 @@ export default async function Home() {
         moreHref="/gallery"
       >
         <Reveal>
-          <ul className="grid grid-cols-3 gap-2 sm:grid-cols-6">
-            {galleryPhotos.slice(0, 6).map((photo) => (
-              <li key={photo.src}>
-                <Link
-                  href="/gallery"
-                  className="block aspect-square overflow-hidden rounded-lg border border-border transition-opacity hover:opacity-85"
-                  aria-label={`${photo.title} — view gallery`}
-                >
-                  <Image
-                    src={photo.src}
-                    alt={photo.title}
-                    width={400}
-                    height={400}
-                    sizes="(max-width: 640px) 30vw, 120px"
-                    className="h-full w-full object-cover"
-                  />
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <HomeGallery photos={galleryPhotos} />
         </Reveal>
       </Section>
 
