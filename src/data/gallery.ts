@@ -1,5 +1,5 @@
 /**
- * Gallery types and categories.
+ * Gallery types, categories, and per-photo metadata.
  *
  * How to add photos (zero code changes):
  *   1. Drop an image (jpg/png/webp/avif/gif) into
@@ -7,13 +7,19 @@
  *   2. That's it. At build time the folder is scanned, the filename
  *      becomes the title, and dimensions are read automatically.
  *
- * Optional metadata: put a `.json` file next to an image (same name)
- * with any of: title, caption, event, date, location, featured. Set
- * `"featured": true` to show a photo in the homepage bento preview.
+ * Optional metadata lives in `photoMeta` below, keyed by the photo's
+ * exact public path (no sidecar files inside public/gallery). Use it to
+ * feature a photo on the homepage and to order the homepage bento:
  *
- * Curated/manual entries (rare — e.g. reordering or cross-category
- * stories) can still be added to `curatedPhotos` below; they take
- * precedence over auto-discovered files at the same path.
+ *   "/gallery/hackathons/Science Exhibition Event during School.jpg":
+ *     { featured: true, order: 1 }
+ *
+ * `order` only affects the homepage selection; the /gallery grid keeps
+ * its category-then-filename order.
+ *
+ * Curated/manual entries (rare — e.g. fully custom entries) can still
+ * be added to `curatedPhotos` below; they take precedence over
+ * auto-discovered files at the same path.
  */
 
 export type GalleryCategoryId =
@@ -33,19 +39,29 @@ export type GalleryPhoto = {
   location?: string;
   /** Show this photo in the homepage bento preview. */
   featured?: boolean;
+  /** Sort position in the homepage bento (lower first). */
+  order?: number;
   /** Intrinsic dimensions, for next/image layout stability. */
   width: number;
   height: number;
 };
 
-export type GallerySidecar = {
-  title?: string;
+export type GalleryPhotoMeta = {
   caption?: string;
   event?: string;
   date?: string;
   location?: string;
+  /** Show this photo in the homepage bento preview. */
   featured?: boolean;
+  /** Sort position in the homepage bento (lower first). */
+  order?: number;
 };
+
+/**
+ * Optional metadata keyed by the photo's public path. Titles always come
+ * from the filename, so there is deliberately no `title` field here.
+ */
+export const photoMeta: Record<string, GalleryPhotoMeta> = {};
 
 export const galleryCategories: { id: GalleryCategoryId; label: string }[] = [
   { id: "hackathons", label: "Hackathons" },

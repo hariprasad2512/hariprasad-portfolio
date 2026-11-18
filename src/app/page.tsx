@@ -20,8 +20,16 @@ const formatDate = (iso: string) =>
   });
 
 export default async function Home() {
-  const featuredProjects = projects.filter((p) => p.featured).slice(0, 5);  const allPhotos = await getGalleryPhotos();
-  const featuredPhotos = allPhotos.filter((photo) => photo.featured).slice(0, 6);
+  const featuredProjects = projects.filter((p) => p.featured).slice(0, 5);
+  const allPhotos = await getGalleryPhotos();
+  const featuredPhotos = allPhotos
+    .filter((photo) => photo.featured)
+    .sort(
+      (a, b) =>
+        (a.order ?? Infinity) - (b.order ?? Infinity) ||
+        a.src.localeCompare(b.src),
+    )
+    .slice(0, 6);
   // Fall back to the first few photos until some are flagged as featured.
   const galleryPhotos =
     featuredPhotos.length > 0 ? featuredPhotos : allPhotos.slice(0, 6);

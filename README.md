@@ -39,25 +39,45 @@ Deploying to any host (e.g. Vercel) rebuilds the site on every `git push`, so ne
 2. Done. At build time the folder is scanned automatically — the filename becomes
    the title and image dimensions are read for you.
 
-**Optional metadata:** add a `.json` sidecar next to a photo (same name):
+**Titles** come from the filename (extension removed): `Coding Something in Library.JPG`
+shows as "Coding Something in Library".
 
-```json
-// public/gallery/hackathons/goa-2025.json → pairs with goa-2025.jpg
-{
-  "title": "Sunset at Goa",
-  "caption": "After the final hackathon pitch.",
-  "event": "Beach cleanup meetup",
-  "date": "2025-03-12",
-  "location": "Goa, India",
-  "featured": true
-}
+**Featuring photos on the homepage bento:** add an entry to `photoMeta` in
+`src/data/gallery.ts`, keyed by the photo's exact public path:
+
+```ts
+export const photoMeta: Record<string, GalleryPhotoMeta> = {
+  "/gallery/hackathons/Science Exhibition Event during School.jpg": {
+    featured: true,
+    order: 1,
+  },
+  "/gallery/personal/Met Sunil Gavaskar in Chennai Airport.JPG": {
+    featured: true,
+    order: 2,
+  },
+};
 ```
 
-Without a sidecar, `goa-2025.jpg` shows as "Goa 2025".
+- Up to six featured photos appear on the homepage; every photo still appears
+  on `/gallery`.
+- `order` sets the homepage position — lower numbers first, photos without it
+  last, ties broken by path. It does not affect the `/gallery` grid, which stays
+  ordered by category folder, then filename.
+- If no photos are featured, the homepage falls back to the first six photos.
+- Optional metadata also supports `caption`, `event`, `date`, and `location`.
 
-`featured: true` puts the photo in the homepage bento preview (up to six, in
-filename order). If no photos are featured, the preview falls back to the first
-six photos.
+The key must match the path exactly, including spaces and capitalisation. No
+`.json` sidecars (or any other metadata files) are needed inside
+`public/gallery/` — just the images.
+
+**Homepage bento slots** (order matters):
+
+| Slot | Desktop | Mobile |
+| --- | --- | --- |
+| 1 | large hero (2×2) | full width |
+| 2 | wide, beside the hero | full width |
+| 3–4 | small, side by side | half width each |
+| 5–6 | wide | half width each |
 
 ### 2. Experience
 
