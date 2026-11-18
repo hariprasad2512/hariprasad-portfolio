@@ -21,7 +21,11 @@ const formatDate = (iso: string) =>
 
 export default async function Home() {
   const featured = projects.filter((p) => p.featured).slice(0, 3);
-  const galleryPhotos = (await getGalleryPhotos()).slice(0, 6);
+  const allPhotos = await getGalleryPhotos();
+  const featuredPhotos = allPhotos.filter((photo) => photo.featured).slice(0, 6);
+  // Fall back to the first few photos until some are flagged as featured.
+  const galleryPhotos =
+    featuredPhotos.length > 0 ? featuredPhotos : allPhotos.slice(0, 6);
 
   return (
     <div className="mx-auto w-full max-w-3xl px-6 sm:px-8">

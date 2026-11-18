@@ -95,6 +95,7 @@ export async function getGalleryPhotos(): Promise<GalleryPhoto[]> {
           category,
           date: sidecar?.date,
           location: sidecar?.location,
+          featured: sidecar?.featured ?? false,
           width: dimensions.width,
           height: dimensions.height,
         });
