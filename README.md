@@ -35,27 +35,29 @@ Deploying to any host (e.g. Vercel) rebuilds the site on every `git push`, so ne
 
 1. Drop an image (`jpg`, `png`, `webp`, `avif`, `gif`) into `public/gallery/<category>/`.
    Folders are the categories: `hackathons`, `college`, `conferences`, `workplace`,
-   `travel`, `personal`.
+   `personal`.
 2. Done. At build time the folder is scanned automatically — the filename becomes
    the title and image dimensions are read for you.
 
 **Optional metadata:** add a `.json` sidecar next to a photo (same name):
 
 ```json
-// public/gallery/travel/goa-2025.json → pairs with goa-2025.jpg
+// public/gallery/hackathons/goa-2025.json → pairs with goa-2025.jpg
 {
   "title": "Sunset at Goa",
   "caption": "After the final hackathon pitch.",
   "event": "Beach cleanup meetup",
   "date": "2025-03-12",
-  "location": "Goa, India"
+  "location": "Goa, India",
+  "featured": true
 }
 ```
 
-Without a sidecar, `goa-2025.jpg` shows as "Goa 2025". There is a working
-example at `public/gallery/hackathons/hackathon-placeholder-01.json`.
+Without a sidecar, `goa-2025.jpg` shows as "Goa 2025".
 
-Replace all `placeholder-*.svg` files with your real photographs.
+`featured: true` puts the photo in the homepage bento preview (up to six, in
+filename order). If no photos are featured, the preview falls back to the first
+six photos.
 
 ### 2. Experience
 

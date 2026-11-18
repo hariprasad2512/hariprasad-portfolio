@@ -1,5 +1,5 @@
 import Hero from "@/components/Hero";
-import ProjectCard from "@/components/ProjectCard";
+import FeaturedProjects from "@/components/FeaturedProjects";
 import ExperienceItem from "@/components/ExperienceItem";
 import HomeGallery from "@/components/Gallery/HomeGallery";
 import Section from "@/components/ui/Section";
@@ -20,8 +20,11 @@ const formatDate = (iso: string) =>
   });
 
 export default async function Home() {
-  const featured = projects.filter((p) => p.featured).slice(0, 3);
-  const galleryPhotos = (await getGalleryPhotos()).slice(0, 6);
+  const featuredProjects = projects.filter((p) => p.featured).slice(0, 5);  const allPhotos = await getGalleryPhotos();
+  const featuredPhotos = allPhotos.filter((photo) => photo.featured).slice(0, 6);
+  // Fall back to the first few photos until some are flagged as featured.
+  const galleryPhotos =
+    featuredPhotos.length > 0 ? featuredPhotos : allPhotos.slice(0, 6);
 
   return (
     <div className="mx-auto w-full max-w-3xl px-6 sm:px-8">
@@ -66,15 +69,9 @@ export default async function Home() {
         title="Featured projects"
         moreHref="/projects"
       >
-        <ul className="grid gap-4 sm:grid-cols-2">
-          {featured.slice(0, 2).map((project, index) => (
-            <li key={project.name}>
-              <Reveal delay={index * 0.05}>
-                <ProjectCard project={project} />
-              </Reveal>
-            </li>
-          ))}
-        </ul>
+        <Reveal>
+          <FeaturedProjects projects={featuredProjects} />
+        </Reveal>
       </Section>
 
       {/* Gallery — bento preview; the full grid lives on /gallery. */}

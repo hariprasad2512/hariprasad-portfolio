@@ -1,6 +1,6 @@
 /**
- * Projects. `featured: true` entries appear in the home-page teaser
- * (first two featured ones are shown); the Projects page lists all.
+ * Projects. `featured: true` entries appear in the homepage spotlight
+ * (up to five, in array order); the Projects page lists all.
  *
  * Optional fields:
  *   - `image`: path (under /public) to a screenshot — until then the

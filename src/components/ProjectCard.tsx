@@ -1,12 +1,12 @@
 import Image from "next/image";
-import { ArrowUpRight, ImageOff } from "lucide-react";
-import { SiGithub } from "@icons-pack/react-simple-icons";
+import { ImageOff } from "lucide-react";
 import {
   categoryStyles,
   fallbackCategoryStyle,
   type Project,
 } from "@/data/projects";
-import { TechIcon } from "./ui/TechIcon";
+import ProjectLinks from "./ProjectLinks";
+import ProjectStack from "./ProjectStack";
 
 /**
  * Project card in the showcase style: large screenshot (or a clearly
@@ -65,44 +65,8 @@ export default function ProjectCard({ project }: { project: Project }) {
           {project.description}
         </p>
 
-        <ul className="mt-4 flex flex-wrap gap-2" aria-label="Technologies used">
-          {project.stack.map((tech) => (
-            <li
-              key={tech}
-              className="flex items-center gap-1.5 rounded-lg border border-border px-2.5 py-1 text-sm text-foreground/90"
-            >
-              <TechIcon name={tech} />
-              {tech}
-            </li>
-          ))}
-        </ul>
-
-        {(project.githubUrl || project.href) ? (
-          <div className="mt-auto flex gap-2.5 pt-5">
-            {project.githubUrl ? (
-              <a
-                href={project.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg border border-border px-4 py-2 text-sm text-foreground/80 transition-colors hover:border-foreground/25 hover:text-foreground"
-              >
-                <SiGithub size={15} aria-hidden="true" />
-                Source
-              </a>
-            ) : null}
-            {project.href ? (
-              <a
-                href={project.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg border border-border px-4 py-2 text-sm text-foreground/80 transition-colors hover:border-foreground/25 hover:text-foreground"
-              >
-                <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-                {project.linkLabel ?? "Live"}
-              </a>
-            ) : null}
-          </div>
-        ) : null}
+        <ProjectStack stack={project.stack} className="mt-4" />
+        <ProjectLinks project={project} className="mt-auto pt-5" />
       </div>
     </article>
   );

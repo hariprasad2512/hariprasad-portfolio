@@ -8,8 +8,8 @@
  *      becomes the title, and dimensions are read automatically.
  *
  * Optional metadata: put a `.json` file next to an image (same name)
- * with any of: title, caption, event, date, location — see the example
- * sidecar in public/gallery/hackathons/.
+ * with any of: title, caption, event, date, location, featured. Set
+ * `"featured": true` to show a photo in the homepage bento preview.
  *
  * Curated/manual entries (rare — e.g. reordering or cross-category
  * stories) can still be added to `curatedPhotos` below; they take
@@ -21,7 +21,6 @@ export type GalleryCategoryId =
   | "college"
   | "conferences"
   | "workplace"
-  | "travel"
   | "personal";
 
 export type GalleryPhoto = {
@@ -32,6 +31,8 @@ export type GalleryPhoto = {
   category: GalleryCategoryId;
   date?: string;
   location?: string;
+  /** Show this photo in the homepage bento preview. */
+  featured?: boolean;
   /** Intrinsic dimensions, for next/image layout stability. */
   width: number;
   height: number;
@@ -43,6 +44,7 @@ export type GallerySidecar = {
   event?: string;
   date?: string;
   location?: string;
+  featured?: boolean;
 };
 
 export const galleryCategories: { id: GalleryCategoryId; label: string }[] = [
@@ -50,7 +52,6 @@ export const galleryCategories: { id: GalleryCategoryId; label: string }[] = [
   { id: "college", label: "College Events" },
   { id: "conferences", label: "Conferences & Meetups" },
   { id: "workplace", label: "Workplace & Team" },
-  { id: "travel", label: "Travel" },
   { id: "personal", label: "Personal Moments" },
 ];
 
