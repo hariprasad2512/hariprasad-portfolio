@@ -36,7 +36,7 @@ export default function ProjectLinks({
           href={project.href}
           target="_blank"
           rel="noopener noreferrer"
-          className={linkClass}
+          className="inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2 text-sm text-accent-foreground transition-opacity hover:opacity-90"
         >
           <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
           {project.linkLabel ?? "Live"}
