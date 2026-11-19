@@ -4,7 +4,11 @@ import { ArrowUpRight } from "lucide-react";
 import Container from "@/components/ui/Container";
 import PageHeader from "@/components/ui/PageHeader";
 import Reveal from "@/components/ui/Reveal";
-import { blogPosts, mediumProfileUrl } from "@/data/blog";
+import {
+  blogPosts,
+  mediumProfileUrl,
+  quoraProfileUrl,
+} from "@/data/blog";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -72,14 +76,23 @@ export default function BlogPage() {
       </ol>
 
       <Reveal>
-        <div className="mt-8 pb-8">
+        <div className="mt-8 flex flex-wrap gap-3 pb-8">
           <a
             href={mediumProfileUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-md border border-border px-4 py-2 text-sm text-foreground/80 transition-colors hover:border-foreground/25 hover:text-foreground"
           >
-            Visit my Medium profile
+            Visit my Medium Profile
+            <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+          </a>
+          <a
+            href={quoraProfileUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-md border border-border px-4 py-2 text-sm text-foreground/80 transition-colors hover:border-foreground/25 hover:text-foreground"
+          >
+            Visit my Quora Profile
             <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
           </a>
         </div>
