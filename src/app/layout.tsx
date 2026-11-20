@@ -30,11 +30,13 @@ export const metadata: Metadata = {
     url: "/",
     siteName: profile.name,
     type: "website",
+    images: [{ url: "/og.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary",
     title: `${profile.name} — ${profile.role}`,
     description: profile.description,
+    images: ["/og.png"],
   },
 };
 
