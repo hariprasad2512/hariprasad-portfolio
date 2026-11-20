@@ -19,7 +19,7 @@ export default function Gallery({ photos }: { photos: GalleryPhoto[] }) {
   const filtered = useMemo(
     () =>
       filter === "all"
-        ? photos
+        ? photos.filter((photo) => photo.category !== "a-featured")
         : photos.filter((photo) => photo.category === filter),
     [filter, photos],
   );

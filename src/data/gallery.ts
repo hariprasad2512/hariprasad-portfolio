@@ -23,6 +23,7 @@
  */
 
 export type GalleryCategoryId =
+  | "a-featured"
   | "hackathons"
   | "college"
   | "conferences"
@@ -64,6 +65,7 @@ export type GalleryPhotoMeta = {
 export const photoMeta: Record<string, GalleryPhotoMeta> = {};
 
 export const galleryCategories: { id: GalleryCategoryId; label: string }[] = [
+  { id: "a-featured", label: "Featured"},
   { id: "hackathons", label: "Hackathons" },
   { id: "college", label: "College Events" },
   { id: "conferences", label: "Conferences & Meetups" },
